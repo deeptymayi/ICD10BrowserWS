@@ -14,13 +14,11 @@ public class Disease {
 	/**
 	 * International disease classification code assigned by WHO.
 	 */
-	@XmlElement(name = "icd-code")
 	private String icdCode;
 
 	/**
 	 * Short description of the disease along with the possible cause.
 	 */
-	@XmlElement
 	private String description;
 
 	/**
@@ -64,6 +62,7 @@ public class Disease {
 	 * 
 	 * @param icdCode ICD Code
 	 */
+	@XmlElement(name = "icd-code")
 	public void setIcdCode(String icdCode) {
 		this.icdCode = icdCode;
 	}
@@ -73,6 +72,7 @@ public class Disease {
 	 * 
 	 * @param description Description of the disease
 	 */
+	@XmlElement
 	public void setDescription(String description) {
 		this.description = description;
 	}
