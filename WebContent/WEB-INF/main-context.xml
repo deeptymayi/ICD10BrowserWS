@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="JerseyRESTService" class="org.edu.sjsu.icd.webservices.BrowserService">
+		<property name="codeSearchService" ref="codeSearchService" />
+	</bean>
+
+	<bean id="codeSearchService" class="org.edu.sjsu.icd.service.CodeSearchService">
+		<property name="diseaseDAO" ref="diseaseDAO" />
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/ICD10" />
+		<property name="username" value="root" />
+		<property name="password" value="destiny" />
+	</bean>
+
+	<bean id="diseaseDAO" class="org.edu.sjsu.icd.dao.impl.DiseaseDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+</beans>
