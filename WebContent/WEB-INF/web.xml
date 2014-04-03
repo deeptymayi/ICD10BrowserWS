@@ -12,7 +12,7 @@
   <listener>
     <listener-class>
             org.springframework.web.context.ContextLoaderListener
-        </listener-class>
+    </listener-class>
   </listener>
   <servlet>
     <servlet-name>JerseyRESTService</servlet-name>
@@ -32,6 +32,6 @@
   </listener>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/main-context.xml</param-value>
+    <param-value>/WEB-INF/spring-application-context.xml</param-value>
   </context-param>
 </web-app>
