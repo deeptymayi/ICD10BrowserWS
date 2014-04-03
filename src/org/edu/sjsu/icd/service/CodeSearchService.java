@@ -14,6 +14,8 @@ import org.edu.sjsu.icd.dao.DiseaseDAO;
 import org.edu.sjsu.icd.vo.Disease;
 import org.edu.sjsu.icd.vo.Diseases;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * This is the service class to manage the data fetch and converting the data to
  * right content type to be set to response.
@@ -40,7 +42,7 @@ public class CodeSearchService {
 		Diseases diseases = new Diseases();
 		diseases.add(disease);
 
-		return toXml(diseases);
+		return toJson(diseases);
 	}
 
 	/**
@@ -56,7 +58,7 @@ public class CodeSearchService {
 		Diseases diseases = new Diseases();
 		diseases.setDiseases(diseaseList);
 
-		return toXml(diseases);
+		return toJson(diseases);
 	}
 
 	/**
@@ -65,12 +67,32 @@ public class CodeSearchService {
 	 * @param object
 	 * @return
 	 */
-	private String toXml(Object object) {
+	@SuppressWarnings("unused")
+    private String toXml(Object object) {
 		OutputStream outputStream = new ByteArrayOutputStream();
 
 		try {
 			Marshaller marshaller = JAXBContext.newInstance(object.getClass()).createMarshaller();
 			marshaller.marshal(object, outputStream);
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return outputStream.toString();
+	}
+
+	/**
+	 * Convert the Java object @link {@link Diseases} to JSON string.
+	 * 
+	 * @param object
+	 * @return
+	 */
+	private String toJson(Object object) {
+		OutputStream outputStream = new ByteArrayOutputStream();
+
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.writeValue(outputStream, object);
 		}
 		catch (Exception exception) {
 			exception.printStackTrace();

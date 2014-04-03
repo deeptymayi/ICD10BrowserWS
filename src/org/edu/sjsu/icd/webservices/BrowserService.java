@@ -28,7 +28,7 @@ public class BrowserService {
 	 */
 	@GET
 	@Path("/fetchById/{i}")
-	@Produces(MediaType.TEXT_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String fetchById(@PathParam("i") String i) {
 		return codeSearchService.fetchDiseaseById(i);
 	}
@@ -42,7 +42,7 @@ public class BrowserService {
 	 */
 	@GET
 	@Path("/fetchByTag/{f}")
-	@Produces(MediaType.TEXT_XML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String fetchByTag(@PathParam("f") String f) {
 		return codeSearchService.fetchDiseaseByTag(f);
 	}
