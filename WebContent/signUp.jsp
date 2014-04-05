@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -22,6 +23,8 @@ body {
 </style>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet"
+	href="http://jquery.bassistance.de/validate/demo/site-demos.css">
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 
@@ -41,13 +44,6 @@ body {
 					<li class="active"><a href="home.jsp">Home</a></li>
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Services<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="prescriptionToRecord.jsp"> Prescription To Record</a></li>
-							<li><a href="searchICD10.jsp"> ICD10 Code Generation</a></li>
-							<li><a href="billingFraudDetection.jsp"> Billing Fraud Detection</a></li>
-						</ul></li>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="form-group">
@@ -66,25 +62,30 @@ body {
 	<div class="container" id="wrap">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<form action="r" method="post" accept-charset="utf-8" class="form"
-					role="form">
+				<form id="signUpForm" action="" method="post" accept-charset="utf-8"
+					class="form" role="form">
 					<legend>Sign Up</legend>
 					<div class="row">
 						<div class="col-xs-6 col-md-6">
-							<input type="text" name="firstname" value=""
-								class="form-control input-lg" placeholder="First Name" />
+							<input type="text" name="firstname" id="firstname" value=""
+								class="form-control input-lg" placeholder="First Name"
+								type="text" required />
 						</div>
 						<div class="col-xs-6 col-md-6">
-							<input type="text" name="lastname" value=""
-								class="form-control input-lg" placeholder="Last Name" />
+							<input type="text" name="lastname" id="lastname" value=""
+								class="form-control input-lg" placeholder="Last Name"
+								type="text" required />
 						</div>
 					</div>
-					<input type="text" name="email" value=""
-						class="form-control input-lg" placeholder="Your Email" /> <input
-						type="password" name="password" value=""
-						class="form-control input-lg" placeholder="Password" /> <input
-						type="password" name="confirm_password" value=""
-						class="form-control input-lg" placeholder="Confirm Password" /> <br />
+					<input type="text" name="username" id="username" value=""
+						class="form-control input-lg" placeholder="Username" type="text"
+						required /> 
+					<input type="password" name="password" id="password"
+						value="" class="form-control input-lg" placeholder="Password"
+						type="password" required /> 
+					<input type="password" name="confirm_password" 
+						value="" class="form-control input-lg"
+						placeholder="Confirm Password" type="password" required /> <br />
 					<span class="help-block">By clicking Create my account, you
 						agree to our Terms.</span>
 					<button class="btn btn-lg btn-primary btn-block signup-btn"
@@ -97,9 +98,13 @@ body {
 		</footer>
 	</div>
 	<!-- /container -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script
+		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+	<script
+		src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/signUp.js"></script>
 </body>
 
 </html>

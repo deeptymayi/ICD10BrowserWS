@@ -41,13 +41,6 @@ body {
 					<li class="active"><a href="home.jsp">Home</a></li>
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="prescriptionToRecord.jsp"> Prescription To Record</a></li>
-							<li><a href="searchICD10.jsp"> ICD10 Code Generation</a></li>
-							<li><a href="billingFraudDetection.jsp"> Billing Fraud Detection</a></li>
-						</ul>
-					</li>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="form-group">
