@@ -97,8 +97,7 @@ body {
 		</footer>
 	</div>
 	<!-- /container -->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
 	<script	src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>

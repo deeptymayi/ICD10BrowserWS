@@ -28,7 +28,7 @@ body {
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
+<link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">
 </head>
 
 <body>
@@ -73,108 +73,112 @@ body {
 			</div>
 			<div class="col-md-8">
 				<div class="well">
-					<form id="patientInformation">
+					<form id="patientInformationForm" action="" method="post" accept-charset="utf-8" class="form" role="form">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="name"> First Name</label> <input type="text"
-										class="form-control" id="firstname" placeholder=" patient's First Name"
-										required="required" />
+										class="form-control" id="firstname" name="firstname"
+										placeholder=" Patient's First Name" required/>
+										<p id="errors" style="height:8px;"></p>
 								</div>
 								<div class="form-group">
 									<label for="name"> Last Name</label> <input type="text"
-										class="form-control" id="lastname" placeholder="Patient's Last Name"
-										required="required" />
+										class="form-control" id="lastname" name="lastname
+										placeholder="Patient's Last Name" required/>
+										<p id="errors" style="height:8px;"></p>
 								</div>
 								<div class="form-group">
-									<label for="email"> Email Address</label>
+									<label for="email"> Email Address</label><br />
 									<div class="input-group">
 										<span class="input-group-addon"><span
 											class="glyphicon glyphicon-envelope"></span> </span> <input
 											type="email" class="form-control" id="email"
-											placeholder="Patient's email" required="required" />
+											placeholder="Patient's email" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="subject"> Sex</label> <select id="sex"
-										name="subject" class="form-control" required="required">
+										name="subject" class="form-control">
 										<option value="na" selected="">Choose One:</option>
 										<option value="male">Male</option>
 										<option value="female">Female</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="name"> Birth Date </label> <input type="text" 
-									class="form-control" id="birthdate" required="required" />
-								</div>						
+									<label for="name"> Birth Date </label> <input type="text"
+										class="form-control" id="birthdate" 
+										placeholder="Select Date" />
+								</div>
 								<div class="form-group">
 									<label for="name"> Diagnosed With </label> <input type="text"
-										class="form-control" id="diseasename" placeholder="Disease Name"
-										required="required" />
+										class="form-control" id="diseasename"
+										placeholder="Disease Name" />
 								</div>
 								<div class="form-group">
 									<label for="name"> ICD10 Code </label> <input type="text"
-										class="form-control" id="icdcode" placeholder="ICD10 Code"
-										required="required" />
+										class="form-control" id="icdcode" placeholder="ICD10 Code"/>
 								</div>
 								<div class="form-group">
-									<label for="name"> Prescribed Medicines </label> <input type="text"
-										class="form-control" id="medicines" placeholder="Medicines comma separated"
-										required="required" />
+									<label for="name"> Prescribed Medicines </label> <input
+										type="text" class="form-control" id="medicines"
+										placeholder="Medicines comma separated" />
 								</div>
 								<div class="form-group">
 									<label for="name"> Dosage </label> <input type="text"
-										class="form-control" id="dosage" placeholder="Dosage"
-										required="required" />
+										class="form-control" id="dosage" placeholder="Dosage"/>
 								</div>
 								<div class="form-group">
 									<label for="name"> Bill Number </label> <input type="text"
-										class="form-control" id="billnumber" placeholder="Bill Number"
-										required="required" />
+										class="form-control" id="billnumber" name="billnumber" placeholder="Bill Number" required />
+									<p id="errors" style="height:8px;"></p>
 								</div>
 								<div class="form-group">
-									<label for="name"> Total Bill </label> <input type="text"
-										class="form-control" id="totalbill" placeholder="Total Bill"
-										required="required" />
+									<label for="name"> Bill Amount </label> <input type="text"
+										class="form-control" id="totalbill" name="totalbill"  placeholder="Total Bill" required />
+									<p id="errors" style="height:8px;"></p>
 								</div>
 							</div>
 							<div class="col-md-4">
-					            <form id="patientAddress">
-					            <legend> Patient Address</legend>
-						           <div class="form-group">
-									<label for="name"> Address Line 1 </label> <input type="text"
-										class="form-control" id="addressline1" placeholder="Address Line 1"
-										required="required" />
+								<form id="patientAddressForm">
+									<legend> Patient Address</legend>
+									<div class="form-group">
+										<label for="name"> Address Line 1 </label> <input type="text"
+											class="form-control" id="addressline1"
+											placeholder="Address Line 1" />
 									</div>
 									<div class="form-group">
-									<label for="name"> Address Line 2 </label> <input type="text"
-										class="form-control" id="addressline2" placeholder="Address Line 2"
-										required="required" />
+										<label for="name"> Address Line 2 </label> <input type="text"
+											class="form-control" id="addressline2"
+											placeholder="Address Line 2" />
 									</div>
 									<div class="form-group">
-									<label for="name"> City / Town </label> <input type="text"
-										class="form-control" id="city" placeholder="City / Town"
-										required="required" />
+										<label for="name"> City / Town </label> <input type="text"
+											class="form-control" id="city" placeholder="City / Town" />
 									</div>
 									<div class="form-group">
-									<label for="name"> State / Province / Region </label> <input type="text"
-										class="form-control" id="state" placeholder="State / Province / Region"
-										required="required" />
+										<label for="name"> State / Province / Region </label> <input
+											type="text" class="form-control" id="state"
+											placeholder="State / Province / Region" />
 									</div>
 									<div class="form-group">
-									<label for="name"> Zip / Postal Code </label> <input type="text"
-										class="form-control" id="zip" placeholder=" Zip / Postal Code"
-										required="required" />
+										<label for="name"> Zip / Postal Code </label> <input
+											type="text" class="form-control" id="zip"
+											placeholder=" Zip / Postal Code" />
 									</div>
-					            </form>
-					        </div>
+								</form>
+							</div>
 						</div>
+						<button class="btn btn-primary btn-block" id="submitPrescription" type="submit">Submit</button>						
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- /container -->
-	<script src="js/prescriptionToRecord.js"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+	<script	src="http://jquery.bassistance.de/validate/additional-methods.js"></script>	
+	<script src="js/prescriptionToRecord.js"></script>	
 </body>
 </html>
