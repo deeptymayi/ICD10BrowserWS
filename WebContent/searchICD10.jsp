@@ -14,6 +14,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="//datatables.net/download/build/nightly/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+
 <style>
 body {
 	padding-top: 50px;
@@ -22,6 +24,8 @@ body {
 </style>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/main.css">
+<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//datatables.net/download/build/nightly/jquery.dataTables.js"></script>
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 
@@ -67,54 +71,22 @@ body {
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<input type="search" id="search" value="" class="form-control"
+				<input type="search" value="" class="form-control"
 					placeholder="Enter patient symptom" style="margin-bottom: 20px;">
-				<button class="btn btn-success">Search</button>
+				<button class="btn btn-success" id="search" >Search</button>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<table class="table icdTable" id="table">
-					<thead>
-						<tr>
-							<th>ICD10 Code</th>
-							<th>Description</th>
-							<th>Notes</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>A00.0</td>
-							<td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
-							<td>Cholera due to Vibrio cholerae 01, biovar cholerae</td>
-						</tr>
-						<tr>
-							<td>A01</td>
-							<td>Typhoid and paratyphoid fevers</td>
-							<td>Typhoid and paratyphoid fevers</td>
-						</tr>
-						<tr>
-							<td>A01.02</td>
-							<td>Typhoid fever with heart involvement</td>
-							<td>Typhoid fever with heart involvement</td>
-						</tr>
-						<tr>
-							<td>A01.03</td>
-							<td>Typhoid pneumonia</td>
-							<td>Typhoid pneumonia</td>
-						</tr>
-					</tbody>
-				</table>
+			    <table cellpadding="0" cellspacing="0" border="0" class="display" id="searchIcdResult"></table>
 				<hr>
 			</div>
 		</div>
 	</div>
-	<script	src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	<!-- /container -->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script	src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/searchICD10.js"></script>
 </body>
 
 </html>
