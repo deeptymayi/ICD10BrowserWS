@@ -32,19 +32,31 @@ $(function () {
 	$("#submitPrescription").click(function() {
         if ($('#patientInformationForm').valid()) {
             var reqData ={
-                	firstname : $("#firstname").val(),
-                	lastname : $("#lastname").val(),
-                	username : $("#username").val(),
-                	password : $("#password").val(),
+                	firstname : $("#firstname").val() || "",
+                	lastname : $("#lastname").val() || "",
+                	email : $("#email").val() || "",
+                	sex : $("#sex").val() || "",
+                	birthdate : $("#birthdate").val() || "",
+                	diseasename : $("#diseasename").val() || "",
+                	icdcode : $("#icdcode").val() || "",
+                	medicines : $("#medicines").val() || "",
+                	dosage : $("#dosage").val() || "",
+                	billnumber : $("#billnumber").val() || "",
+                	totalbill : $("#totalbill").val() || "",
+                	addressline1 : $("#addressline1").val() || "",
+                	addressline2 : $("#addressline2").val() || "",
+                	city : $("#city").val() || "",
+                	state : $("#state").val() || "",
+                	zip : $("#zip").val() || ""
                 };
                 
                 $.ajax({
                     type: "POST",
-                    url: "/ICD10BrowserWS/rest/signUp",
+                    url: "/ICD10BrowserWS/rest/prescriptionToRecord",
                     dataType: 'json',
                     data: reqData,
                     success: function(response, textStatus, xhr) {
-                        alert("success");
+                        alert("success");                        
                     },
                     error: function(xhr, textStatus, errorThrown) {
                         alert("error");

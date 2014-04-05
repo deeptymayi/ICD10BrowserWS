@@ -84,8 +84,8 @@ body {
 								</div>
 								<div class="form-group">
 									<label for="name"> Last Name</label> <input type="text"
-										class="form-control" id="lastname" name="lastname
-										placeholder="Patient's Last Name" required/>
+										class="form-control" id="lastname" name="lastname"
+										placeholder=" Patient's Last Name" required/>
 										<p id="errors" style="height:8px;"></p>
 								</div>
 								<div class="form-group">
@@ -93,7 +93,7 @@ body {
 									<div class="input-group">
 										<span class="input-group-addon"><span
 											class="glyphicon glyphicon-envelope"></span> </span> <input
-											type="email" class="form-control" id="email"
+											type="email" class="form-control" id="email" name="email"
 											placeholder="Patient's email" />
 									</div>
 								</div>
@@ -107,26 +107,26 @@ body {
 								</div>
 								<div class="form-group">
 									<label for="name"> Birth Date </label> <input type="text"
-										class="form-control" id="birthdate" 
+										class="form-control" id="birthdate" name="birthdate"
 										placeholder="Select Date" />
 								</div>
 								<div class="form-group">
 									<label for="name"> Diagnosed With </label> <input type="text"
-										class="form-control" id="diseasename"
+										class="form-control" id="diseasename" name="diseasename"
 										placeholder="Disease Name" />
 								</div>
 								<div class="form-group">
 									<label for="name"> ICD10 Code </label> <input type="text"
-										class="form-control" id="icdcode" placeholder="ICD10 Code"/>
+										class="form-control" id="icdcode" name="icdcode" placeholder="ICD10 Code"/>
 								</div>
 								<div class="form-group">
 									<label for="name"> Prescribed Medicines </label> <input
-										type="text" class="form-control" id="medicines"
+										type="text" class="form-control" id="medicines" name="medicines"
 										placeholder="Medicines comma separated" />
 								</div>
 								<div class="form-group">
 									<label for="name"> Dosage </label> <input type="text"
-										class="form-control" id="dosage" placeholder="Dosage"/>
+										class="form-control" id="dosage"  name ="dosage" placeholder="Dosage"/>
 								</div>
 								<div class="form-group">
 									<label for="name"> Bill Number </label> <input type="text"
@@ -141,29 +141,29 @@ body {
 							</div>
 							<div class="col-md-4">
 								<form id="patientAddressForm">
-									<legend> Patient Address</legend>
+									<legend>Patient Address</legend>
 									<div class="form-group">
 										<label for="name"> Address Line 1 </label> <input type="text"
-											class="form-control" id="addressline1"
+											class="form-control" id="addressline1" name="addressline1"
 											placeholder="Address Line 1" />
 									</div>
 									<div class="form-group">
 										<label for="name"> Address Line 2 </label> <input type="text"
-											class="form-control" id="addressline2"
+											class="form-control" id="addressline2" name="addressline2"
 											placeholder="Address Line 2" />
 									</div>
 									<div class="form-group">
 										<label for="name"> City / Town </label> <input type="text"
-											class="form-control" id="city" placeholder="City / Town" />
+											class="form-control" id="city" name="city" placeholder="City / Town" />
 									</div>
 									<div class="form-group">
 										<label for="name"> State / Province / Region </label> <input
-											type="text" class="form-control" id="state"
+											type="text" class="form-control" id="state" name="state"
 											placeholder="State / Province / Region" />
 									</div>
 									<div class="form-group">
 										<label for="name"> Zip / Postal Code </label> <input
-											type="text" class="form-control" id="zip"
+											type="text" class="form-control" id="zip" name="zip"
 											placeholder=" Zip / Postal Code" />
 									</div>
 								</form>
@@ -173,7 +173,7 @@ body {
 					</form>
 				</div>
 			</div>
-		</div>
+		</div>		
 	</div>
 	<!-- /container -->
 	<script src="js/vendor/bootstrap.min.js"></script>
