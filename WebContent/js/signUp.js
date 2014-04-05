@@ -5,11 +5,11 @@ $(function () {
 		success: "valid"
 	});
 	
-	$( "#signUpForm" ).validate({
+	$("#signUpForm").validate({
 		rules: {
 			firstname: {
 				required: true,
-				 number: false
+				number: false
 			},
 			lastname: {
 				required: true,
@@ -51,4 +51,30 @@ $(function () {
             return false;
         }
 	});
+		
+	$("#loginForm").validate({
+		
+        submitHandler: function() {        	
+        	 
+            var reqData ={
+            	username : $("#loginusername").val(),
+            	password : $("#loginpassword").val()
+            };
+            
+            $.ajax({
+                type: "POST",
+                url: "/ICD10BrowserWS/rest/login",
+                dataType: 'json',
+                data: reqData,
+                success: function(response, textStatus, xhr) {
+                    alert("success");
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert("error");
+                }
+            });
+            return false;
+        }
+	});
+	
 });

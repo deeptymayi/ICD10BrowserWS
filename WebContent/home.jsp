@@ -22,6 +22,7 @@ body {
 </style>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 
@@ -42,12 +43,12 @@ body {
 					<li><a href="#about">About</a></li>
 					<li><a href="#contact">Contact</a></li>
 				</ul>
-				<form class="navbar-form navbar-right">
+				<form id="loginForm" class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" placeholder="Email" class="form-control">
+						<input type="text" placeholder="Username" id="loginusername" class="form-control" type="text" required >
 					</div>
 					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control">
+						<input type="password" placeholder="Password" id="loginpassword" class="form-control" type="text" required >
 					</div>
 					<button type="submit" class="btn btn-success">Sign in</button>
 				</form>
@@ -123,9 +124,11 @@ body {
 		</footer>
 	</div>
 	<!-- /container -->
-	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>	
+	<script src="http://jquery.bassistance.de/validate/jquery.validate.js"></script>
+	<script	src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/home.js"></script>
 </body>
 
 </html>

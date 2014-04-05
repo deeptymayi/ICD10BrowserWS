@@ -1,0 +1,33 @@
+$(function () {
+
+	$.validator.setDefaults({
+		debug: true,
+		success: "valid"
+	});
+		
+	$("#loginForm").validate({
+		
+        submitHandler: function() {        	
+        	 
+            var reqData ={
+            	username : $("#loginusername").val(),
+            	password : $("#loginpassword").val()
+            };
+            
+            $.ajax({
+                type: "POST",
+                url: "/ICD10BrowserWS/rest/login",
+                dataType: 'json',
+                data: reqData,
+                success: function(response, textStatus, xhr) {
+                    alert("success");
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert("error");
+                }
+            });
+            return false;
+        }
+	});
+	
+});
