@@ -71,7 +71,7 @@ body {
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<input type="search" value="" class="form-control"
+				<input type="search" value="" class="form-control" id="searchInput" 
 					placeholder="Enter patient symptom" style="margin-bottom: 20px;">
 				<button class="btn btn-success" id="search" >Search</button>
 			</div>
