@@ -56,10 +56,16 @@ $(function () {
                     dataType: 'json',
                     data: reqData,
                     success: function(response, textStatus, xhr) {
-                        alert("success");                        
+                    	$("#ptrModalSuccess").modal({
+                  		   show:true,
+                  		   backdrop:'static'
+                  		});                       
                     },
                     error: function(xhr, textStatus, errorThrown) {
-                        alert("error");
+                    	$("#ptrModalError").modal({
+                 		   show:true,
+                 		   backdrop:'static'
+                 		});
                     }
                 });  
         }

@@ -92,6 +92,54 @@ body {
 				</form>
 			</div>
 		</div>
+		<div class="modal fade" id="signUpSuccess">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h4 class="modal-title">Signup successfully</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p> Congratulations. User account created successfully !!! </p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
+		<div class="modal fade" id="signUpError">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h4 class="modal-title">Signup Error</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p> Server issues. Please try again later !!!</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
+		<div class="modal fade" id="loginError">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h4 class="modal-title">Login Error</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p> Server issues. Please try again later !!!</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
 		<footer>
 			<p>&copy; SJSU Cmpe295 Group25 2013</p>
 		</footer>

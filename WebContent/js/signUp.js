@@ -42,10 +42,16 @@ $(function () {
                 dataType: 'json',
                 data: reqData,
                 success: function(response, textStatus, xhr) {
-                    alert("success");
+                	$("#signUpSuccess").modal({
+               		   show:true,
+               		   backdrop:'static'
+               		}); 
                 },
                 error: function(xhr, textStatus, errorThrown) {
-                    alert("error");
+                	$("#signUpError").modal({
+               		   show:true,
+               		   backdrop:'static'
+               		}); 
                 }
             });
             return false;
@@ -70,7 +76,10 @@ $(function () {
                     alert("success");
                 },
                 error: function(xhr, textStatus, errorThrown) {
-                    alert("error");
+                	$("#loginError").modal({
+                		   show:true,
+                		   backdrop:'static'
+                		}); 
                 }
             });
             return false;

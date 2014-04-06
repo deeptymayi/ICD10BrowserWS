@@ -23,7 +23,10 @@ $(function () {
                     alert("success");
                 },
                 error: function(xhr, textStatus, errorThrown) {
-                    alert("error");
+                	$("#loginError").modal({
+             		   show:true,
+             		   backdrop:'static'
+             		}); 
                 }
             });
             return false;
