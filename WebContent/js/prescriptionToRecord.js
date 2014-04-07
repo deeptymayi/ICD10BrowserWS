@@ -6,7 +6,7 @@ $(function () {
 	});
 	
 	$(function() {
-	    $( "#birthdate" ).datepicker();
+	    $( "#birthdate" ).calendarsPicker({yearRange: 'any'});
 	  });
 	
 	$("#patientInformationForm").validate({

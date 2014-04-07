@@ -29,6 +29,10 @@ body {
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://jquery.bassistance.de/validate/demo/site-demos.css">
+<script type="text/javascript" src="js/jquery.calendars.min.js"></script> 
+<script type="text/javascript" src="js/jquery.calendars.plus.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.calendars.picker.css"> 
+<script type="text/javascript" src="js/jquery.calendars.picker.js"></script>
 </head>
 
 <body>
