@@ -1,6 +1,6 @@
 $(function () {
 	
-	$( "#search" ).click(function() {
+	var searchICD10Handler= function() {
 		var search = $("#searchInput").val();
 		$.ajax({
 			type: "GET",
@@ -12,8 +12,6 @@ $(function () {
 				$('#searchIcdResult').dataTable({
 					"aaData": aaData,
 					"aoColumns": [
-		              //{ "icdCode": "Engine" },
-		              //{ "description": "Browser" }
 		              {"mData": "icdCode", sDefaultContent: "",  "sTitle": "ICD 10 Code", "sWidth": "25%" },
 		              {"mData": "description", sDefaultContent: "", "sTitle" : "Description", "sWidth": "75%" } 
 		            ],
@@ -23,8 +21,13 @@ $(function () {
 			error: function(xhr, textStatus, errorThrown) {
 				alert("error");
 			}
-		});
-		
-	});	
+		});		
+	};
+	$( "#search" ).click(searchICD10Handler);
+	$("#searchInput").keyup(function(event){
+	    if(event.keyCode == 13){
+	    	searchICD10Handler();
+	    }
+	});
 
 });

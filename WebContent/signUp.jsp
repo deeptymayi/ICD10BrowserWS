@@ -82,7 +82,7 @@ body {
 					<input type="password" name="password" id="password"
 						value="" class="form-control input-lg" placeholder="Password"
 						type="password" required /> 
-					<input type="password" name="confirm_password" 
+					<input type="password" name="confirmPassword" id="confirmPassword" 
 						value="" class="form-control input-lg"
 						placeholder="Confirm Password" type="password" required /> <br />
 					<span class="help-block">By clicking Create my account, you

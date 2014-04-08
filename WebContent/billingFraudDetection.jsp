@@ -89,6 +89,9 @@ body {
 									<label for="name"> To Date </label> <input type="text"
 										class="form-control" id="todate" name="todate"
 										placeholder="Select Date" />
+								</div>														
+								<div class="col-lg-6">
+									<button class="btn btn-success" id="search" >Search</button>
 								</div>
 							</form>
 							<table class="table icdTable" id="table">

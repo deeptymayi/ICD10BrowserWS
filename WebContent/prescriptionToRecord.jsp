@@ -92,6 +92,7 @@ body {
 										placeholder=" Patient's Last Name" required/>
 										<p id="errors" style="height:8px;"></p>
 								</div>
+								<!-- 
 								<div class="form-group">
 									<label for="email"> Email Address</label><br />
 									<div class="input-group">
@@ -101,8 +102,9 @@ body {
 											placeholder="Patient's email" />
 									</div>
 								</div>
+								-->
 								<div class="form-group">
-									<label for="subject"> Sex</label> <select id="sex"
+									<label for="subject"> Gender</label> <select id="sex"
 										name="subject" class="form-control">
 										<option value="na" selected="">Choose One:</option>
 										<option value="male">Male</option>
