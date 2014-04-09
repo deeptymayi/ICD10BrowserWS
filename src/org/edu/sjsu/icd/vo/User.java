@@ -9,42 +9,48 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Pratibha
  */
 @XmlRootElement
-public class SignUp {
+public class User {
 
 	/**
 	 * First Name
 	 */
+	@XmlElement
 	private String firstName;
 
 	/**
 	 * Last Name
 	 */
+	@XmlElement
 	private String lastName;
-	
+
 	/**
 	 * User Name
 	 */
+	@XmlElement
 	private String userName;
-	
+
 	/**
 	 * Password
 	 */
+	@XmlElement
 	private String password;
 
 	/**
 	 * Default Constructor
 	 */
-	public SignUp() {
+	public User() {
 
 	}
 
 	/**
 	 * Overloaded constructor.
 	 * 
-	 * @param icdCode ICD code
-	 * @param description Description of the disease
+	 * @param firstName First Name
+	 * @param lastName Last Name
+	 * @param userName User Name
+	 * @param password Password
 	 */
-	public SignUp(String firstName, String lastName, String userName, String password) {
+	public User(String firstName, String lastName, String userName, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
@@ -61,7 +67,6 @@ public class SignUp {
 	/**
 	 * @param firstName the firstName to set
 	 */
-	@XmlElement
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -76,7 +81,6 @@ public class SignUp {
 	/**
 	 * @param lastName the lastName to set
 	 */
-	@XmlElement
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -91,7 +95,6 @@ public class SignUp {
 	/**
 	 * @param userName the userName to set
 	 */
-	@XmlElement
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
@@ -106,18 +109,17 @@ public class SignUp {
 	/**
 	 * @param password the password to set
 	 */
-	@XmlElement
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	/**
 	 * Overloaded toString method.
 	 * 
 	 * @return String
 	 */
-	public String toString(){
-        return "Name="+this.firstName+", Email="+this.lastName+", Country="+this.userName;
-    }
-
+	public String toString() {
+		return "First Name: " + this.firstName + ", Last Name: " + this.lastName + ", User Name: "
+		        + this.userName + ", Password: " + this.password;
+	}
 }

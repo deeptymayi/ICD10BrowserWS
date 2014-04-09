@@ -14,8 +14,9 @@
             org.springframework.web.context.ContextLoaderListener
     </listener-class>
   </listener>
+  
   <servlet>
-    <servlet-name>JerseyRESTService</servlet-name>
+    <servlet-name>Jersey REST Service</servlet-name>
     <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
@@ -24,12 +25,14 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>JerseyRESTService</servlet-name>
+    <servlet-name>Jersey REST Service</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/spring-application-context.xml</param-value>

@@ -4,19 +4,19 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.edu.sjsu.icd.dao.DiseaseDAO;
+import org.edu.sjsu.icd.dao.IDiseaseDAO;
 import org.edu.sjsu.icd.vo.Disease;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * This is the DiseaseDAO implements which has the code to interact with the
+ * This is the IDiseaseDAO implements which has the code to interact with the
  * table in DB.
  * 
  * @author Deepti
  */
-public class DiseaseDAOImpl implements DiseaseDAO {
+public class DiseaseDAOImpl implements IDiseaseDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
@@ -44,6 +44,7 @@ public class DiseaseDAOImpl implements DiseaseDAO {
 		Disease disease = null;
 
 		try {
+			// Create a query using the JDBC template and fetch the record.
 			disease = jdbcTemplate.queryForObject(query, new Object[] { icdCode },
 			        new BeanPropertyRowMapper<Disease>(Disease.class));
 		}
@@ -51,7 +52,6 @@ public class DiseaseDAOImpl implements DiseaseDAO {
 			emptyResultDataAccessException.printStackTrace();
 		}
 
-		// Create a query using the JDBC template and fetch the record.
 		return disease;
 	}
 

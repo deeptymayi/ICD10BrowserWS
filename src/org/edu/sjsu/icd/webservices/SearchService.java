@@ -7,7 +7,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.edu.sjsu.icd.service.CodeSearchService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * RESTful Service class which has the API methods to be invoked by the clients.
@@ -15,9 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Deepti
  */
 @Path("icdservice")
-public class BrowserService {
+public class SearchService {
 
-	@Autowired
 	private CodeSearchService codeSearchService;
 
 	/**

@@ -9,7 +9,7 @@ import org.edu.sjsu.icd.vo.Disease;
  * 
  * @author Deepti
  */
-public interface DiseaseDAO {
+public interface IDiseaseDAO {
 
 	/**
 	 * Retrieve the disease information using the ICD code.

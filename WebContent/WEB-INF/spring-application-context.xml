@@ -3,12 +3,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="JerseyRESTService" class="org.edu.sjsu.icd.webservices.BrowserService">
+	<bean id="searchService" class="org.edu.sjsu.icd.webservices.SearchService">
 		<property name="codeSearchService" ref="codeSearchService" />
+	</bean>
+
+	<bean id="accountService" class="org.edu.sjsu.icd.webservices.AccountServices">
+		<property name="authenticationService" ref="authenticationService" />
 	</bean>
 
 	<bean id="codeSearchService" class="org.edu.sjsu.icd.service.CodeSearchService">
 		<property name="diseaseDAO" ref="diseaseDAO" />
+	</bean>
+
+	<bean id="authenticationService" class="org.edu.sjsu.icd.service.AuthenticationService">
+		<property name="registrationDAO" ref="registrationDAO" />
 	</bean>
 
 	<bean id="dataSource"
@@ -22,4 +30,9 @@
 	<bean id="diseaseDAO" class="org.edu.sjsu.icd.dao.impl.DiseaseDAOImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<bean id="registrationDAO" class="org.edu.sjsu.icd.dao.impl.RegistrationDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 </beans>

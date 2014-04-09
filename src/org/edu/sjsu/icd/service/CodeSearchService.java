@@ -10,11 +10,10 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import org.edu.sjsu.icd.dao.DiseaseDAO;
+import org.edu.sjsu.icd.dao.IDiseaseDAO;
+import org.edu.sjsu.icd.utils.ObjectJsonBidirectionalConverter;
 import org.edu.sjsu.icd.vo.Disease;
 import org.edu.sjsu.icd.vo.Diseases;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * This is the service class to manage the data fetch and converting the data to
@@ -27,7 +26,7 @@ public class CodeSearchService {
 	/**
 	 * Disease DAO object.
 	 */
-	private DiseaseDAO diseaseDAO;
+	private IDiseaseDAO diseaseDAO;
 
 	/**
 	 * Fetches the Disease object based on the ICD code.
@@ -42,7 +41,7 @@ public class CodeSearchService {
 		Diseases diseases = new Diseases();
 		diseases.add(disease);
 
-		return toJson(diseases);
+		return ObjectJsonBidirectionalConverter.toJson(diseases);
 	}
 
 	/**
@@ -58,7 +57,7 @@ public class CodeSearchService {
 		Diseases diseases = new Diseases();
 		diseases.setDiseases(diseaseList);
 
-		return toJson(diseases);
+		return ObjectJsonBidirectionalConverter.toJson(diseases);
 	}
 
 	/**
@@ -82,30 +81,11 @@ public class CodeSearchService {
 	}
 
 	/**
-	 * Convert the Java object @link {@link Diseases} to JSON string.
+	 * Sets the IDiseaseDAO object.
 	 * 
-	 * @param object
-	 * @return
+	 * @param diseaseDAO {@link IDiseaseDAO}
 	 */
-	private String toJson(Object object) {
-		OutputStream outputStream = new ByteArrayOutputStream();
-
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			mapper.writeValue(outputStream, object);
-		}
-		catch (Exception exception) {
-			exception.printStackTrace();
-		}
-		return outputStream.toString();
-	}
-
-	/**
-	 * Sets the DiseaseDAO object.
-	 * 
-	 * @param diseaseDAO {@link DiseaseDAO}
-	 */
-	public void setDiseaseDAO(DiseaseDAO diseaseDAO) {
+	public void setDiseaseDAO(IDiseaseDAO diseaseDAO) {
 		this.diseaseDAO = diseaseDAO;
 	}
 }
