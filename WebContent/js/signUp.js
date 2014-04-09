@@ -43,16 +43,16 @@ $(function() {
 		submitHandler : function() {
 
 			var reqData = {
-				firstname : $("#firstname").val(),
-				lastname : $("#lastname").val(),
-				username : $("#username").val(),
+				firstName : $("#firstname").val(),
+				lastName : $("#lastname").val(),
+				userName : $("#username").val(),
 				password : $("#password").val(),
 			};
 
 			$.ajax({
 				type : "POST",
-				url : "/ICD10BrowserWS/rest/signUp",
-				headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+				url : "/ICD10BrowserWS/rest/accountservice/signup",
+				headers: {"Accept": "text/html", "Content-Type" : "application/json"},
 				dataType : 'json',
 				data : reqData,
 				success : function(response, textStatus, xhr) {
@@ -77,14 +77,14 @@ $(function() {
 		submitHandler : function() {
 
 			var reqData = {
-				username : $("#loginusername").val(),
+				userName : $("#loginusername").val(),
 				password : $("#loginpassword").val()
 			};
 
 			$.ajax({
 				type : "POST",
-				url : "/ICD10BrowserWS/rest/login",
-				headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+				url : "/ICD10BrowserWS/rest/accountservice/login",
+				headers: {"Accept": "text/html", "Content-Type" : "application/json"},
 				dataType : 'json',
 				data : reqData,
 				success : function(response, textStatus, xhr) {
