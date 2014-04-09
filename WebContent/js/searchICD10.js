@@ -5,6 +5,7 @@ $(function () {
 		$.ajax({
 			type: "GET",
 			url: "/ICD10BrowserWS/rest/icdservice/fetchByTag/" + search,
+			headers: {"Accept": "application/json", "Content-Type" : "application/json"},
 			dataType: 'json',
 			success: function(data) {
 				var aaData = data.diseases;

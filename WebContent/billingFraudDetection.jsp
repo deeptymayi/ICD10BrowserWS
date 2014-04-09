@@ -55,7 +55,8 @@ body {
 							<li><a href="searchICD10.jsp"> ICD10 Code Generation</a></li>
 							<li><a href="billingFraudDetection.jsp"> Billing Fraud
 									Detection</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -82,15 +83,15 @@ body {
 							<form>
 								<div class="form-group col-md-2">
 									<label for="name"> From Date </label> <input type="text"
-										class="form-control" id="fromdate" name="fromdate"
+										class="form-control" id="fromdate" name="fromdate" required
 										placeholder="Select Date" />
 								</div>
 								<div class="form-group col-md-2">
 									<label for="name"> To Date </label> <input type="text"
-										class="form-control" id="todate" name="todate"
+										class="form-control" id="todate" name="todate" required
 										placeholder="Select Date" />
 								</div>														
-								<div class="col-lg-6">
+								<div class="col-lg-6" style="margin-top:23px;">
 									<button class="btn btn-success" id="search" >Search</button>
 								</div>
 							</form>

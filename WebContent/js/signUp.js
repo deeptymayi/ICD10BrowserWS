@@ -52,6 +52,7 @@ $(function() {
 			$.ajax({
 				type : "POST",
 				url : "/ICD10BrowserWS/rest/signUp",
+				headers: {"Accept": "application/json", "Content-Type" : "application/json"},
 				dataType : 'json',
 				data : reqData,
 				success : function(response, textStatus, xhr) {
@@ -83,6 +84,7 @@ $(function() {
 			$.ajax({
 				type : "POST",
 				url : "/ICD10BrowserWS/rest/login",
+				headers: {"Accept": "application/json", "Content-Type" : "application/json"},
 				dataType : 'json',
 				data : reqData,
 				success : function(response, textStatus, xhr) {

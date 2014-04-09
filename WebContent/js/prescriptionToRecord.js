@@ -53,6 +53,7 @@ $(function () {
                 $.ajax({
                     type: "POST",
                     url: "/ICD10BrowserWS/rest/prescriptionToRecord",
+                    headers: {"Accept": "application/json", "Content-Type" : "application/json"},
                     dataType: 'json',
                     data: reqData,
                     success: function(response, textStatus, xhr) {
