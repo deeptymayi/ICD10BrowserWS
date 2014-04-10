@@ -54,7 +54,7 @@ $(function() {
 				url : "/ICD10BrowserWS/rest/accountservice/signup",
 				headers: {"Accept": "text/html", "Content-Type" : "application/json"},
 				dataType : 'json',
-				data : reqData,
+				data : JSON.stringify(reqData),
 				success : function(response, textStatus, xhr) {
 					$("#signUpSuccess").modal({
 						show : true,
@@ -83,10 +83,10 @@ $(function() {
 
 			$.ajax({
 				type : "POST",
-				url : "/ICD10BrowserWS/rest/accountservice/login",
+				url : "/ICD10BrowserWS/rest/accountservice/login/",
 				headers: {"Accept": "text/html", "Content-Type" : "application/json"},
 				dataType : 'json',
-				data : reqData,
+				data : JSON.stringify(reqData),
 				success : function(response, textStatus, xhr) {
 					alert("success");
 				},

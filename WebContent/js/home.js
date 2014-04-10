@@ -10,16 +10,16 @@ $(function () {
         submitHandler: function() {        	
         	 
             var reqData ={
-            	username : $("#loginusername").val(),
+            	userName : $("#loginusername").val(),
             	password : $("#loginpassword").val()
             };
             
             $.ajax({
                 type: "POST",
-                url: "/ICD10BrowserWS/rest/login",
-                headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+                url: "/ICD10BrowserWS/rest/accountservice/login/",
+                headers: {"Accept": "text/html", "Content-Type" : "application/json"},
                 dataType: 'json',
-                data: reqData,
+                data: JSON.stringify(reqData),
                 success: function(response, textStatus, xhr) {
                     alert("success");
                 },

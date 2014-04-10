@@ -46,10 +46,10 @@ body {
 				</ul>
 				<form id="loginForm" class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" placeholder="Username" id="loginusername" class="form-control" type="text" required >
+						<input type="text" placeholder="Username" id="loginusername" name="loginusername" class="form-control" type="text" required >
 					</div>
 					<div class="form-group">
-						<input type="password" placeholder="Password" id="loginpassword" class="form-control" type="text" required >
+						<input type="password" placeholder="Password" id="loginpassword" name="loginpassword" class="form-control" type="text" required >
 					</div>
 					<button type="submit" class="btn btn-success">Sign in</button>
 				</form>
