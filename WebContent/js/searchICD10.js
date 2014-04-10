@@ -8,7 +8,7 @@ $(function () {
 			headers: {"Accept": "application/json", "Content-Type" : "application/json"},
 			dataType: 'json',
 			success: function(data) {
-				var aaData = data.diseases;
+				var aaData = JSON.parse(data).diseases;
 				//alert("success");
 				$('#searchIcdResult').dataTable({
 					"aaData": aaData,

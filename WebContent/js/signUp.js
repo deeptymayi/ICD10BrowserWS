@@ -60,6 +60,9 @@ $(function() {
 						show : true,
 						backdrop : 'static'
 					});
+					setTimeout(function () {
+                        window.location.href = "/ICD10BrowserWS/home.jsp";
+                     }, 3000);
 				},
 				error : function(xhr, textStatus, errorThrown) {
 					$("#signUpError").modal({
@@ -88,7 +91,13 @@ $(function() {
 				dataType : 'json',
 				data : JSON.stringify(reqData),
 				success : function(response, textStatus, xhr) {
-					alert("success");
+					$("#loginSuccess").modal({
+              		   show:true,
+              		   backdrop:'static'
+              		}); 
+                    setTimeout(function () {
+                        window.location.href = "/ICD10BrowserWS/searchICD10.jsp";
+                     }, 2000);
 				},
 				error : function(xhr, textStatus, errorThrown) {
 					$("#loginError").modal({

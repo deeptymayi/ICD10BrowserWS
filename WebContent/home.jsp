@@ -45,10 +45,10 @@ body {
 				</ul>
 				<form id="loginForm" class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" placeholder="Username" id="loginusername" name="loginusername" class="form-control" type="text" required >
+						<input type="text" placeholder="Username" id="loginusername" name="loginusername" class="form-control" type="text"  >
 					</div>
 					<div class="form-group">
-						<input type="password" placeholder="Password" id="loginpassword" name="loginpassword" class="form-control" type="text" required >
+						<input type="password" placeholder="Password" id="loginpassword" name="loginpassword" class="form-control" type="text"  >
 					</div>
 					<button type="submit" class="btn btn-success">Sign in</button>
 				</form>
@@ -126,7 +126,7 @@ body {
 		        <h4 class="modal-title">Login Error</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p> Server issues. Please try again later !!!</p>
+		        <p> Please enter valid username / password.</p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -134,6 +134,22 @@ body {
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->	
+		<div class="modal fade" id="loginSuccess">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h4 class="modal-title">Welcome. Login Successful !!!</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p> You are being directed to the Services page ... </p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 		<footer>
 			<p>&copy; SJSU Cmpe295 Group25 2013</p>
 		</footer>
