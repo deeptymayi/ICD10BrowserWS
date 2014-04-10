@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.edu.sjsu.icd.service.AuthenticationService;
+import org.edu.sjsu.icd.utils.ICDAppConstants;
 import org.edu.sjsu.icd.vo.User;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -38,10 +39,10 @@ public class AccountServices {
 		// Respond to the client once the record is published.
 		Response response = null;
 		if (persisted) {
-			response = Response.status(Response.Status.OK).build();
+			response = Response.status(Response.Status.OK).entity(ICDAppConstants.SIGNUP_SUCCESS_RESPONSE_BODY).build();
 		}
 		else {
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ICDAppConstants.SIGNUP_FAILURE_RESPONSE_BODY).build();
 		}
 		return response;
 	}
@@ -59,10 +60,10 @@ public class AccountServices {
 		// Respond to the client once the record is published.
 		Response response = null;
 		if (userDetails != null) {
-			response = Response.status(Response.Status.OK).build();
+			response = Response.status(Response.Status.OK).entity(ICDAppConstants.AUTH_SUCCESS_RESPONSE_BODY).build();
 		}
 		else {
-			response = Response.status(Response.Status.UNAUTHORIZED).build();
+			response = Response.status(Response.Status.UNAUTHORIZED).entity(ICDAppConstants.AUTH_FAILURE_RESPONSE_BODY).build();
 		}
 		return response;
 	}
