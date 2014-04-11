@@ -27,7 +27,7 @@ public class RegistrationDAOImpl implements IRegistrationDAO {
 	}
 
 	public boolean persistNewUser(User user) {
-		// Query to retrieve ICD code record by the ICD code
+		// Query to insert user details to the Registration table
 		String query = "INSERT INTO REGISTRATION (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)";
 
 		int result = 0;

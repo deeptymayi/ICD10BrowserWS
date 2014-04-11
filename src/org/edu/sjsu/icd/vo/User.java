@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * This is the model class to hold the disease related information.
+ * This is the model class to hold the User related information.
  * 
  * @author Pratibha
  */

@@ -26,7 +26,7 @@ public class AccountServices {
 	 * Client registration/signup.
 	 * 
 	 * @param user User details
-	 * @return disease details
+	 * @return registration success or failure details
 	 */
 	@POST 
 	@Path("/signup/")
