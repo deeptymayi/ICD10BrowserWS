@@ -38,19 +38,12 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	public boolean persistBillInformation(Patient patient) {
 		// Query to insert Billing information to the Billing_record DB Table
 		String query = "INSERT INTO MEDICAL_BILL (BILLING_DATE, BILL_NUMBER, ICD10_CODE, BILLING_AMOUNT) VALUES (?, ?, ?, ?)";
-		int result = 0;
 		boolean returnValue = false;
 
-		try {
-			// Create a query using the JDBC template and insert the record.
-			result = jdbcTemplate.update(
-			        query,
-			        new Object[] { patient.getBillingDate(), patient.getBillNumber(),
-			                patient.getIcdCode(), patient.getBillAmount()});
-		}
-		catch (Exception exception) {
-			exception.printStackTrace();
-		}
+		// Create a query using the JDBC template and insert the record.
+		int result = jdbcTemplate.update(query,
+		        new Object[] { patient.getBillingDate(), patient.getBillNumber(), patient.getIcdCode(),
+		                patient.getBillAmount() });
 
 		if (result != 0)
 			returnValue = true;

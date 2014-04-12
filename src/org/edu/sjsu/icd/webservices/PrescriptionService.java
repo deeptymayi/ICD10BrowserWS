@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.edu.sjsu.icd.service.PrescriptionManagementService;
+import org.edu.sjsu.icd.utils.ICDAppConstants;
 import org.edu.sjsu.icd.vo.Patient;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,15 +31,20 @@ public class PrescriptionService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_HTML)
 	public Response savePrescription(@RequestBody Patient patient) {
-		boolean prescriptionPersisted = prescriptionManagementService.persistPatientInformation(patient);
-
 		// Respond to the client once the record is published.
 		Response response = null;
-		if (prescriptionPersisted) {
-			response = Response.status(Response.Status.OK).build();
+
+		try {
+			prescriptionManagementService.persistPatientInformation(patient);
+
+			response = Response.status(Response.Status.OK)
+			        .entity(ICDAppConstants.PRESCRIPTION_PERSISTENCE_SUCCESS_RESPONSE_BODY).build();
+
 		}
-		else {
-			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		catch (Exception e) {
+			e.printStackTrace();
+			response = Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+			        .entity(ICDAppConstants.PRESCRIPTION_PERSISTENCE_FAILURE_RESPONSE_BODY).build();
 		}
 		return response;
 	}

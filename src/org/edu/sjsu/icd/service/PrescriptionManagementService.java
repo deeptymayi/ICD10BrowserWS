@@ -4,6 +4,7 @@ import org.edu.sjsu.icd.dao.IMedBillDAO;
 import org.edu.sjsu.icd.dao.IMedRecordDAO;
 import org.edu.sjsu.icd.dao.IPatientDAO;
 import org.edu.sjsu.icd.vo.Patient;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 
@@ -31,31 +32,34 @@ public class PrescriptionManagementService {
 	 * 
 	 * 
 	 */
+	@Transactional
 	public boolean persistPatientInformation(Patient patient) {
 
+		// Check if the patient record already exists. We do not want to
+		// insert the bio if the patient Id already exists. Also, we want to
+		// use the same patient id for all the bills that belong to this
+		// patient.
+		String patientId = buildUniquePatientId(patient);
+		Patient patient1 = null;
+		// We do not want to keep the patient detail fetching as a port of
+		// the persist transaction. Hence eating up the exception.
 		try {
-			// Check if the patient record already exists. We do not want to
-			// insert the bio if the patient Id already exists. Also, we want to
-			// use the same patient id for all the bills that belong to this
-			// patient.
-			String patientId = buildUniquePatientId(patient);
-			Patient patient1 = patientDAO.fetchPatientById(patientId);
-
-			if (patient1 == null) {
-				patient.setPatientId(patientId);
-				patientDAO.persistPatientInformation(patient);
-			}
-			else {
-				patient.setPatientId(patient1.getPatientId());
-			}
-
-			medBillDAO.persistBillInformation(patient);
-			medRecordDAO.persistMedRecord(patient);
+			patient1 = patientDAO.fetchPatientById(patientId);
 		}
-		catch (Exception exception) {
-			exception.printStackTrace();
-			return false;
+		catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		if (patient1 == null) {
+			patient.setPatientId(patientId);
+			patientDAO.persistPatientInformation(patient);
+		}
+		else {
+			patient.setPatientId(patient1.getPatientId());
+		}
+
+		medBillDAO.persistBillInformation(patient);
+		medRecordDAO.persistMedRecord(patient);
 		return true;
 	}
 
