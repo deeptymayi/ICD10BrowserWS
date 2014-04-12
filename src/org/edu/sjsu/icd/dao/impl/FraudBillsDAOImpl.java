@@ -7,9 +7,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.edu.sjsu.icd.dao.IMedBillDAO;
+import org.edu.sjsu.icd.dao.IFraudBillsDAO;
 import org.edu.sjsu.icd.vo.Bill;
-import org.edu.sjsu.icd.vo.Patient;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,12 +17,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author Deepti
  * 
  */
-public class MedBillDAOImpl implements IMedBillDAO {
+public class FraudBillsDAOImpl implements IFraudBillsDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
 	/**
-	 * Set the data source object.
+	 * Set the datasource object.
 	 * 
 	 * @param dataSource
 	 *            {@link DataSource}
@@ -36,24 +35,25 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.edu.sjsu.icd.dao.IMedBillDAO#persistBillInformation(org.edu.sjsu.
-	 * icd.vo.Patient)
+	 * org.edu.sjsu.icd.dao.IFraudBillsDAO#fetchBillByNumber(java.lang.String)
 	 */
 	@Override
-	public boolean persistBillInformation(Patient patient) {
-		// Query to insert Billing information to the Billing_record DB Table
-		String query = "INSERT INTO MEDICAL_BILL (BILLING_DATE, BILL_NUMBER, ICD10_CODE, BILLING_AMOUNT) VALUES (?, ?, ?, ?)";
-		boolean returnValue = false;
+	public Bill fetchBillByNumber(String billNumber) {
+		// Query to retrieve fraud bill record by the bill number
+		String query = "SELECT * FROM FRAUD_BILLS WHERE BILL_NUMBER=?";
 
-		// Create a query using the JDBC template and insert the record.
-		int result = jdbcTemplate.update(query,
-		        new Object[] { patient.getBillingDate(), patient.getBillNumber(), patient.getIcdCode(),
-		                patient.getBillAmount() });
+		Bill bill = null;
 
-		if (result != 0)
-			returnValue = true;
+		try {
+			// Create a query using the JDBC template and fetch the record.
+			bill = jdbcTemplate.queryForObject(query, new Object[] { billNumber },
+			        new BeanPropertyRowMapper<Bill>(Bill.class));
+		}
+		catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+			emptyResultDataAccessException.printStackTrace();
+		}
 
-		return returnValue;
+		return bill;
 	}
 
 	/*
@@ -64,10 +64,11 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	 * .String, java.lang.String)
 	 */
 	@Override
-	public long fetchTotalNoOfBillsByDateRange(String startDate, String endDate) {
+	public List<Bill> fetchFraudBillsByDateRange(String startDate, String endDate) {
 		List<Bill> bills = null;
 
-		String query = "SELECT BILL_NUMBER FROM MEDICAL_BILL WHERE BILLING_DATE >= '" + startDate + "' AND BILLING_DATE <= '" + endDate + "'";
+		String query = "SELECT BILL_NUMBER, FIRST_NAME, LAST_NAME, BILLING_DATE FROM FRAUD_BILLS WHERE BILLING_DATE >= '"
+		        + startDate + "' AND BILLING_DATE <= '" + endDate + "'";
 
 		try {
 			bills = jdbcTemplate.query(query, new BeanPropertyRowMapper<Bill>(Bill.class));
@@ -77,7 +78,6 @@ public class MedBillDAOImpl implements IMedBillDAO {
 		}
 
 		// Create a query using the JDBC template and fetch the records.
-		return bills.size();
+		return bills;
 	}
-
 }

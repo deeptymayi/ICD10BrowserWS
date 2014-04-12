@@ -24,6 +24,10 @@
 		<property name="prescriptionManagementService" ref="prescriptionManagementService" />
 	</bean>
 
+	<bean id="billingFraudService" class="org.edu.sjsu.icd.webservices.BillingFraudService">
+		<property name="fraudViewerService" ref="fraudViewerService" />
+	</bean>
+
 	<bean id="codeSearchService" class="org.edu.sjsu.icd.service.CodeSearchService">
 		<property name="diseaseDAO" ref="diseaseDAO" />
 	</bean>
@@ -36,6 +40,11 @@
 		<property name="patientDAO" ref="patientDAO" />
 		<property name="medBillDAO" ref="medBillDAO" />
 		<property name="medRecordDAO" ref="medRecordDAO" />
+	</bean>
+
+	<bean id="fraudViewerService" class="org.edu.sjsu.icd.service.FraudViewerService">
+		<property name="fraudBillsDAO" ref="fraudBillsDAO" />
+		<property name="medBillDAO" ref="medBillDAO" />
 	</bean>
 
 	<bean id="diseaseDAO" class="org.edu.sjsu.icd.dao.impl.DiseaseDAOImpl">
@@ -55,6 +64,10 @@
 	</bean>
 
 	<bean id="medRecordDAO" class="org.edu.sjsu.icd.dao.impl.MedRecordDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="fraudBillsDAO" class="org.edu.sjsu.icd.dao.impl.FraudBillsDAOImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 

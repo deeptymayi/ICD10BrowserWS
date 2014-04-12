@@ -16,4 +16,9 @@ public interface IMedBillDAO {
 	 * @return true if bill record persistence is successful.
 	 */
 	public boolean persistBillInformation(Patient patient);
+	
+	/**
+	 */
+	public long fetchTotalNoOfBillsByDateRange(String startDate, String endDate);
+
 }

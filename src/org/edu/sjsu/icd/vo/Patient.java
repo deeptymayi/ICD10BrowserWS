@@ -47,7 +47,7 @@ public class Patient {
 	 * 
 	 */
 	@XmlElement
-	private int     phoneNumber;
+	private long     phoneNumber;
 
 	/**
 	 * 
@@ -194,14 +194,14 @@ public class Patient {
 	/**
 	 * @return the phoneNumber
 	 */
-	public int getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
 
 	/**
 	 * @param phoneNumber the phoneNumber to set
 	 */
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -334,6 +334,11 @@ public class Patient {
 	 * @return the billingDate
 	 */
 	public Date getBillingDate() {
+		if(billingDate != null) {
+			billingDate.setHours(00);
+			billingDate.setMinutes(00);
+			billingDate.setSeconds(00);
+		}
 		return billingDate;
 	}
 
