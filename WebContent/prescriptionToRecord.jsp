@@ -123,12 +123,6 @@ body {
 										<p id="errors" style="height:9px;"></p>
 								</div>
 								<div class="form-group">
-									<label for="name"> Patient Id</label> <input type="text"
-										class="form-control" id="patientId" name="patientId"
-										placeholder=" Patient's Id " required />
-										<p id="errors" style="height:9px;"></p>
-								</div>
-								<div class="form-group">
 									<label for="name"> Diagnosis </label> <input type="text"
 										class="form-control" id="diseasename" name="diseasename"
 										placeholder="Disease Name" />

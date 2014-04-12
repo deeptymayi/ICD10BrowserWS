@@ -66,7 +66,7 @@ $(function() {
 				},
 				error : function(xhr, textStatus, errorThrown) {
 					
-					if( JSON.parse(xhr.responseText).message == "User already exists"){
+					if( JSON.parse(xhr.responseText).message == "User already exists."){
 						$("#userExistsError").modal({
 							show : true,
 							backdrop : 'static'

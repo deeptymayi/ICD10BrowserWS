@@ -54,7 +54,6 @@ $(function () {
         	var formattedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
         	
             var reqData ={
-            		patientId : $("#patientId").val() || "",
             		firstName : $("#firstname").val() || "Steve1",
             		lastName : $("#lastname").val() || "Jobs",
                 	gender : $("#sex").val() || "M",
