@@ -84,13 +84,13 @@ body {
 									<label for="name"> First Name</label> <input type="text"
 										class="form-control" id="firstname" name="firstname"
 										placeholder=" Patient's First Name" required/>
-										<p id="errors" style="height:8px;"></p>
+										<p id="errors" style="height:9px;"></p>
 								</div>
 								<div class="form-group">
 									<label for="name"> Last Name</label> <input type="text"
 										class="form-control" id="lastname" name="lastname"
 										placeholder=" Patient's Last Name" required/>
-										<p id="errors" style="height:8px;"></p>
+										<p id="errors" style="height:9px;"></p>
 								</div>
 								<!-- 
 								<div class="form-group">
@@ -112,12 +112,24 @@ body {
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="name"> Birth Date </label> <input type="text"
+									<label for="name"> Date of Birth </label> <input type="text"
 										class="form-control" id="birthdate" name="birthdate"
 										placeholder="Select Date" />
 								</div>
 								<div class="form-group">
-									<label for="name"> Diagnosed With </label> <input type="text"
+									<label for="name"> Phone Number </label> <input type="text"
+										class="form-control" id="phoneNum" name="phoneNum"
+										placeholder="Phone Number" required/>
+										<p id="errors" style="height:9px;"></p>
+								</div>
+								<div class="form-group">
+									<label for="name"> Patient Id</label> <input type="text"
+										class="form-control" id="patientId" name="patientId"
+										placeholder=" Patient's Id " required />
+										<p id="errors" style="height:9px;"></p>
+								</div>
+								<div class="form-group">
+									<label for="name"> Diagnosis </label> <input type="text"
 										class="form-control" id="diseasename" name="diseasename"
 										placeholder="Disease Name" />
 								</div>
@@ -137,12 +149,18 @@ body {
 								<div class="form-group">
 									<label for="name"> Bill Number </label> <input type="text"
 										class="form-control" id="billnumber" name="billnumber" placeholder="Bill Number" required />
-									<p id="errors" style="height:8px;"></p>
+									<p id="errors" style="height:9px;"></p>
+								</div>
+								<div class="form-group">
+									<label for="name"> Billing Date </label> <input type="text"
+										class="form-control" id="billingDate" name="billingDate"
+										placeholder="Select Date" required/>
+										<p id="errors" style="height:9px;"></p>
 								</div>
 								<div class="form-group">
 									<label for="name"> Bill Amount </label> <input type="text"
 										class="form-control" id="totalbill" name="totalbill"  placeholder="Total Bill" required />
-									<p id="errors" style="height:8px;"></p>
+									<p id="errors" style="height:9px;"></p>
 								</div>
 							</div>
 							<div class="col-md-4">

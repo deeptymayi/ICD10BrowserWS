@@ -127,6 +127,22 @@ body {
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->	
+		<div class="modal fade" id="userExistsError">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h4 class="modal-title">Signup Error</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p> User already exists</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
 		<div class="modal fade" id="loginError">
 		  <div class="modal-dialog">
 		    <div class="modal-content">

@@ -65,10 +65,18 @@ $(function() {
                      }, 3000);
 				},
 				error : function(xhr, textStatus, errorThrown) {
-					$("#signUpError").modal({
-						show : true,
-						backdrop : 'static'
-					});
+					
+					if( JSON.parse(xhr.responseText).message == "User already exists"){
+						$("#userExistsError").modal({
+							show : true,
+							backdrop : 'static'
+						});
+					}else{
+						$("#signUpError").modal({
+							show : true,
+							backdrop : 'static'
+						});
+					}
 				}
 			});
 			return false;

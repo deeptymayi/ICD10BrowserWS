@@ -7,7 +7,11 @@ $(function () {
 	
 	$(function() {
 	    $( "#birthdate" ).calendarsPicker({yearRange: 'any'});
-	  });
+	});
+	
+	$(function() {
+	    $( "#billingDate" ).calendarsPicker({yearRange: 'any'});
+	});
 	
 	$("#patientInformationForm").validate({
 		rules: {
@@ -29,33 +33,53 @@ $(function () {
 		}
 	});
 	
+	
 	$("#submitPrescription").click(function() {
         if ($('#patientInformationForm').valid()) {
+        	
+        	var date;
+        	var billingDate;
+        	var birthDate;
+        	
+        	if($("#billingDate").val()){
+        		date = new Date($("#billingDate").val());
+        		billingDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        	}
+        	
+        	if($("#birthdate").val()){
+        		date = new Date($("#birthdate").val());
+        		birthDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        	}
+        	var date = new Date($("#billingDate").val());
+        	var formattedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        	
             var reqData ={
-                	firstname : $("#firstname").val() || "",
-                	lastname : $("#lastname").val() || "",
-                	email : $("#email").val() || "",
-                	sex : $("#sex").val() || "",
-                	birthdate : $("#birthdate").val() || "",
-                	diseasename : $("#diseasename").val() || "",
-                	icdcode : $("#icdcode").val() || "",
-                	medicines : $("#medicines").val() || "",
-                	dosage : $("#dosage").val() || "",
-                	billnumber : $("#billnumber").val() || "",
-                	totalbill : $("#totalbill").val() || "",
-                	addressline1 : $("#addressline1").val() || "",
-                	addressline2 : $("#addressline2").val() || "",
-                	city : $("#city").val() || "",
-                	state : $("#state").val() || "",
-                	zip : $("#zip").val() || ""
+            		patientId : $("#patientId").val() || "",
+            		firstName : $("#firstname").val() || "Steve1",
+            		lastName : $("#lastname").val() || "Jobs",
+                	gender : $("#sex").val() || "M",
+                	dob : birthDate || "0987654321",
+                	phoneNumber : $("#phoneNum").val() || "1234567890", 
+                	diagnosis : $("#diseasename").val() || "Cholera",
+                	icdCode : $("#icdcode").val() || "A00",
+                	addressLine1 : $("#addressline1").val() || "addressLine1",
+                	addressLine2 : $("#addressline2").val() || "addressLine2",
+                	city : $("#addressline1").val() || "San Jose",
+                	state : $("#state").val() || "CA",
+                	zipCode : $("#zip").val() || "12345",
+                	medicines : $("#medicines").val() || "many medicines",
+                	dosage : $("#dosage").val() || "Twice a day",
+                	billingDate : billingDate, 
+                	billNumber : $("#billnumber").val() || "2",
+                	billAmount : $("#totalbill").val() || "1500"
                 };
                 
                 $.ajax({
                     type: "POST",
-                    url: "/ICD10BrowserWS/rest/prescriptionToRecord",
-                    headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+                    url: "/ICD10BrowserWS/rest/ptrservice/pres/",
+                    headers: {"Accept": "text/html", "Content-Type" : "application/json"},
                     dataType: 'json',
-                    data: reqData,
+                    data: JSON.stringify(reqData),
                     success: function(response, textStatus, xhr) {
                     	$("#ptrModalSuccess").modal({
                   		   show:true,
