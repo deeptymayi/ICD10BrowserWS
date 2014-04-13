@@ -59,6 +59,22 @@ public class CodeSearchService {
 
 		return ObjectJsonBidirectionalConverter.toJson(diseases);
 	}
+	
+	/**
+	 * Fetches all the diseases which has the said tag.
+	 * 
+	 * @param tag A keyword to be looked up in all the disease descriptions.
+	 * @return Diseases with details in XML format.
+	 */
+	public String fetchDiseaseByTagTextAnalytics(String tag) {
+		List<Disease> diseaseList = diseaseDAO.findDiseaseByTagTextAnalytics(tag);
+
+		// Create the object to maintain symmetry in XML structure.
+		Diseases diseases = new Diseases();
+		diseases.setDiseases(diseaseList);
+
+		return ObjectJsonBidirectionalConverter.toJson(diseases);
+	}
 
 	/**
 	 * Convert the Java object @link {@link Diseases} to XML string.

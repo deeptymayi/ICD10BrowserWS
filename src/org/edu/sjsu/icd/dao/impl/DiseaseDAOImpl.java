@@ -92,4 +92,37 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		// Create a query using the JDBC template and fetch the records.
 		return diseases;
 	}
+
+	@Override
+	public List<Disease> findDiseaseByTagTextAnalytics(String tag) {
+		
+		List<Disease> diseases = null;
+
+		/*StringBuilder query = new StringBuilder();
+		String[] args = tag.split(" ");
+
+		// Build the query to retrieve ICD code record by tag in the description
+		// based on the search field.
+		if (args.length > 0) {
+			query.append("SELECT * FROM ICD_CODE_TO_DISEASE_MAPPING WHERE DESCRIPTION LIKE '%" + args[0]
+			        + "%'");
+
+			// If more than one keyword is given then the query will have
+			// multiple where clause.
+			for (int i = 1; i < args.length; i++) {
+				query.append("AND DESCRIPTION LIKE '%" + args[i] + "%'");
+			}
+
+			try {
+				diseases = jdbcTemplate.query(query.toString(), new BeanPropertyRowMapper<Disease>(
+				        Disease.class));
+			}
+			catch (EmptyResultDataAccessException emptyResultDataAccessException) {
+				emptyResultDataAccessException.printStackTrace();
+			}
+
+		}*/
+		// Create a query using the JDBC template and fetch the records.
+		return diseases;
+	}
 }

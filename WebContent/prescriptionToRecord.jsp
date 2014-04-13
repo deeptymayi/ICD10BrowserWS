@@ -54,11 +54,10 @@ body {
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Services<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="prescriptionToRecord.jsp"> Prescription To
-									Record</a></li>
+							<li><a href="prescriptionToRecord.jsp"> Prescription To	Record</a></li>
 							<li><a href="searchICD10.jsp"> ICD10 Code Generation</a></li>
-							<li><a href="billingFraudDetection.jsp"> Billing Fraud
-									Detection</a></li>
+							<li><a href="searchICD10TextAnalytics.jsp"> ICD10 Code Generation with Text Analytics</a></li>
+							<li><a href="billingFraudDetection.jsp"> Billing Fraud Detection</a></li>
 						</ul></li>
 				</ul>
 			</div>

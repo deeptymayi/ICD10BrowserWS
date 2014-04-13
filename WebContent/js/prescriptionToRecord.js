@@ -49,10 +49,7 @@ $(function () {
         	if($("#birthdate").val()){
         		date = new Date($("#birthdate").val());
         		birthDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-        	}
-        	var date = new Date($("#billingDate").val());
-        	var formattedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-        	
+        	}        	
             var reqData ={
             		firstName : $("#firstname").val() || "Steve1",
             		lastName : $("#lastname").val() || "Jobs",

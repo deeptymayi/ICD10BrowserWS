@@ -63,7 +63,7 @@ body {
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="page-header">
-					<h1>Search for ICD10 Code</h1>
+					<h1>Text Analytics Based Search for ICD10 Code</h1>
 				</div>
 			</div>
 		</div>
@@ -87,7 +87,7 @@ body {
 	<!-- /container -->
 	<script	src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/searchICD10.js"></script>
+	<script src="js/searchICD10TextAnalytics.js"></script>
 </body>
 
 </html>

@@ -26,4 +26,12 @@ public interface IDiseaseDAO {
 	 * @return List of diseases
 	 */
 	public List<Disease> findDiseaseByTag(String tag);
+	
+	/**
+	 * Retrieve the list of diseases from the tag.
+	 * 
+	 * @param tag Tag is a keyword in the description.
+	 * @return List of diseases
+	 */
+	public List<Disease> findDiseaseByTagTextAnalytics(String tag);
 }

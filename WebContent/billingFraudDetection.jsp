@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.calendars.picker.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="//datatables.net/download/build/nightly/jquery.dataTables.css" rel="stylesheet" type="text/css" />
 <style>
 body {
 	padding-top: 50px;
@@ -25,10 +26,8 @@ body {
 </style>
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/main.css">
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-<script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -50,11 +49,10 @@ body {
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Services<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="prescriptionToRecord.jsp"> Prescription To
-									Record</a></li>
+							<li><a href="prescriptionToRecord.jsp"> Prescription To	Record</a></li>
 							<li><a href="searchICD10.jsp"> ICD10 Code Generation</a></li>
-							<li><a href="billingFraudDetection.jsp"> Billing Fraud
-									Detection</a></li>
+							<li><a href="searchICD10TextAnalytics.jsp"> ICD10 Code Generation with Text Analytics</a></li>
+							<li><a href="billingFraudDetection.jsp"> Billing Fraud Detection</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -80,56 +78,25 @@ body {
 					<div class="tab-pane active" id="detectBillingFraud">
 						<br>
 						<div class="row">
-							<form>
-								<div class="form-group col-md-2">
-									<label for="name"> From Date </label> <input type="text"
-										class="form-control" id="fromdate" name="fromdate" required
-										placeholder="Select Date" />
-								</div>
-								<div class="form-group col-md-2">
-									<label for="name"> To Date </label> <input type="text"
-										class="form-control" id="todate" name="todate" required
-										placeholder="Select Date" />
-								</div>														
-								<div class="col-lg-6" style="margin-top:23px;">
-									<button class="btn btn-success" id="search" >Search</button>
-								</div>
-							</form>
-							<table class="table icdTable" id="table">
-								<thead>
-									<tr>
-										<th>Patient Name</th>
-										<th>Last Name</th>
-										<th>Bill Number</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>John</td>
-										<td>Taylor</td>
-										<td>B7644</td>
-										<td>
-											<button class="btn btn-success">More Details</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Jack</td>
-										<td>Domain</td>
-										<td>B6632</td>
-										<td>
-											<button class="btn btn-success">More Details</button>
-										</td>
-									</tr>
-									<tr>
-										<td>Bill</td>
-										<td>Swift</td>
-										<td>B6324</td>
-										<td>
-											<button class="btn btn-success">More Details</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="form-group col-md-2">
+								<label for="name"> From Date </label> <input type="text"
+									class="form-control" id="fromdate" name="fromdate" required
+									placeholder="Select Date" />
+							</div>
+							<div class="form-group col-md-2">
+								<label for="name"> To Date </label> <input type="text"
+									class="form-control" id="todate" name="todate" required
+									placeholder="Select Date" />
+							</div>														
+							<div class="col-lg-6" style="margin-top:23px;">
+								<button class="btn btn-success" id="searchBillingFraud" >Search</button>
+							</div>
+						</div>
+						<div class="row" style="margin-top:20px;">
+							<div class="col-lg-12">
+							    <table cellpadding="0" cellspacing="0" border="0" class="display" id="billingFraudResult"></table>
+								<hr>
+							</div>
 						</div>
 					</div>
 					<div class="tab-pane" id="summary">
@@ -143,10 +110,9 @@ body {
 			src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	</div>
 	<!-- /container -->
-	<script
-		src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
-	<script src="js/highcharts.js"></script>
+	<script src="js/highcharts.js"></script><script src="//datatables.net/download/build/nightly/jquery.dataTables.js"></script>
 	<script src="js/modules/exporting.js"></script>
 	<script type="text/javascript" src="js/jquery.calendars.min.js"></script>
 	<script type="text/javascript" src="js/jquery.calendars.plus.min.js"></script>

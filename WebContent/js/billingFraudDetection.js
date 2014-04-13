@@ -1,5 +1,7 @@
 $(function () {
-	
+
+    $('#tabs').tab();  
+    
 	$( "#fromdate" ).calendarsPicker({yearRange: 'any'});
 	
 	$( "#todate" ).calendarsPicker({yearRange: 'any'});
@@ -42,7 +44,48 @@ $(function () {
                 ['Bill not generated',    9.5]
             ]
         }]
-    });
-    
-    $('#tabs').tab();
+    });    
+	
+    var billingFraudDetection= function() {
+		var fromDate;
+		var toDate;
+		
+		if($("#fromdate").val()){
+    		date = new Date($("#fromdate").val());
+    		fromDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+    	}
+    	
+    	if($("#todate").val()){
+    		date = new Date($("#todate").val());
+    		toDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+    	}
+		    	
+		$.ajax({
+			type: "GET",
+			url: "/ICD10BrowserWS/rest/bfr/fetchByRange/" + fromDate + "_" + toDate,
+			headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+			dataType: 'json',
+			success: function(data) {
+				var aaData = JSON.parse(data).bills;
+				for(var i=0; i<aaData.length; i++){
+					aaData[i]["button"] = "<button class='btn btn-success' id='#moreDetails'>More Details</button>";
+				}
+				$('#billingFraudResult').dataTable({
+					"aaData": aaData,
+					"aoColumns": [
+		              {"mData": "firstName", sDefaultContent: "",  "sTitle": "Patient First Name", "sWidth": "25%" },
+		              {"mData": "lastName", sDefaultContent: "", "sTitle" : "Patient First Name", "sWidth": "25%" },
+		              {"mData": "billNumber", sDefaultContent: "",  "sTitle": "Bill Number", "sWidth": "25%" },
+		              {"mData": "button", sDefaultContent: "", "sTitle": "More Details",  "sWidth": "25%"}
+		            ],
+		            "bDestroy": true
+				});
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert("error");
+			}
+		});		
+	};
+	
+	$( "#searchBillingFraud" ).click(billingFraudDetection);
 });

@@ -30,7 +30,7 @@ public class SearchService {
 	public String fetchById(@PathParam("i") String i) {
 		return codeSearchService.fetchDiseaseById(i);
 	}
-
+	
 	/**
 	 * Fetches the list of disease which has the mention of the tagged word in
 	 * their description.
@@ -43,6 +43,20 @@ public class SearchService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String fetchByTag(@PathParam("f") String f) {
 		return codeSearchService.fetchDiseaseByTag(f);
+	}
+
+	/**
+	 * Fetches the list of disease which has the mention of the tagged word in
+	 * their description.
+	 * 
+	 * @param f tag
+	 * @return List of diseases
+	 */
+	@GET
+	@Path("/fetchByTagTextAnalytics/{f}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String fetchByTagTextAnalytics(@PathParam("f") String f) {
+		return codeSearchService.fetchDiseaseByTagTextAnalytics(f);
 	}
 
 	/**
