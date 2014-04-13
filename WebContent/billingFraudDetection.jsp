@@ -106,8 +106,28 @@ body {
 				<!--  <p><a class="btn btn-primary btn-lg" href="patientInformation.html">Detect Billing Fraud &raquo;</a></p>-->
 			</div>
 		</div>
-		<script
-			src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
+		<div class="modal fade" id="moreDetails">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h3 class="modal-title">Patient Billing Details</h3>
+		      </div>
+		      <div class="modal-body">
+		        <p>Patient First Name : <span id="firstName"> </span></p>
+		        <p>Patient Last Name : <span id="lastName"> </span></p>
+		        <p>Bill Number : <span id="billNumber"> </span></p>
+		        <p>Symtoms : <span id="symptoms"> </span></p>
+		        <p>Billed ICD10 Code : <span id="billIcd"> </span></p>
+		        <p>Suggested ICD10 Codes : <span id="suggestedIcd"> </span></p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->	
+		<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	</div>
 	<!-- /container -->
 	<script	src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>

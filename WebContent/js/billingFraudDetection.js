@@ -26,7 +26,7 @@ $(function () {
 			success: function(data) {
 				var aaData = JSON.parse(data).bills;
 				for(var i=0; i<aaData.length; i++){
-					aaData[i]["button"] = "<button class='btn btn-success' id='#moreDetails'>More Details</button>";
+					aaData[i]["button"] = "<button class='btn btn-success moreDetails' id='" + aaData[i]["billNumber"] + "' >More Details</button>";
 				}
 				$('#billingFraudResult').dataTable({
 					"aaData": aaData,
@@ -38,6 +38,7 @@ $(function () {
 		            ],
 		            "bDestroy": true
 				});
+				$( ".moreDetails" ).bind( "click", moreDetailsHandler);
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				alert("error");
@@ -50,8 +51,11 @@ $(function () {
 			headers: {"Accept": "application/json", "Content-Type" : "application/json"},
 			dataType: 'json',
 			success: function(data) {
-				alert("hi");
 				summaryDetails = JSON.parse(data);
+				/*summaryDetails.totalBills = 50;
+				summaryDetails.correctBills = 20;
+				summaryDetails.fraudBills = 25;
+				summaryDetails.billNotGenerated = 5;*/
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				alert("error");
@@ -99,6 +103,36 @@ $(function () {
 		    });    
 		});
 	};
-	
+		
 	$( "#searchBillingFraud" ).click(billingFraudDetection);
+	
+	var moreDetailsHandler = function(event){
+		var billNumber = event.target.id;
+		
+		$.ajax({
+			type: "GET",
+			url: "/ICD10BrowserWS/rest/bfr/fetchById/" + billNumber,
+			headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+			dataType: 'json',
+			success: function(data) {
+				var billDetails = JSON.parse(data).bills;
+				
+				$(".modal-body #firstName").text(billDetails[0].firstName);
+				$(".modal-body #lastName").text(billDetails[0].lastName);
+				$(".modal-body #billNumber").text(billDetails[0].billNumber);
+				$(".modal-body #symptoms").text(billDetails[0].symptoms);
+				$(".modal-body #billIcd").text(billDetails[0].billIcd);
+				$(".modal-body #suggestedIcd").text(billDetails[0].suggestedIcd);
+				
+				$("#moreDetails").modal({
+					show : true,
+					backdrop : 'static'
+				});
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert("error");
+			}
+		});		
+	};
+	
 });
