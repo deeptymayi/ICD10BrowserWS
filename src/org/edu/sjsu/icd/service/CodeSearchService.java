@@ -18,6 +18,7 @@ import org.edu.sjsu.icd.vo.Diseases;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * This is the service class to manage the data fetch and converting the data to
@@ -70,7 +71,7 @@ public class CodeSearchService {
 	 * @param tag A keyword to be looked up in all the disease descriptions.
 	 * @return Diseases with details in XML format.
 	 */
-	@JsonDeserialize(as=LinkedHashSet.class)
+	
 	public String fetchDiseaseByTagTextAnalytics(String tag) {
 		ObjectMapper objectMapper = new ObjectMapper();
 

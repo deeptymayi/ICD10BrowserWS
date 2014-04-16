@@ -264,9 +264,9 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 				
 		System.out.println("Step 4 done");
 		
-		/*for (Disease s : diseases){
+		for (Disease s : diseases){
 			System.out.println(s.getIcdCode()+ " - " +s.getDescription());
-		}*/
+		}
 		    	
 		return diseases;
 	}
