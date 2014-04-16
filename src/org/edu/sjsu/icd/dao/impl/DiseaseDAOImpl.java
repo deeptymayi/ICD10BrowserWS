@@ -187,7 +187,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 
 	    //III - Create two hashmap, one with some of columns(icdhm) and other with sum or rows(vocabhm) from freq array
 	    
-		int sumOfRow = 0;
+		/*int sumOfRow = 0;
 		for(int m=1; m <= 7072; m++){
 			for(int n = 1; n <= 43028; n++){
 				sumOfRow = (int) (sumOfRow + vocabICDSparseMatrix.get(m, n));
@@ -195,7 +195,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 			vocabhm.put((short)m, (short)sumOfRow);
 			//System.out.println(m + " - " + sumOfRow);
 			sumOfRow = 0;
-		}		
+		}*/		
 		
 		int sumOfColumn = 0;
 		for(int n = 1; n <= 43028; n++){
@@ -247,22 +247,27 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		// Sort the result with the most recent result at the top
 		Map<Integer,Double> sortedResultMap = sortByComparator(unsortedResultMap);
 		
-		firstKey = (Integer) sortedResultMap.keySet().toArray()[0];
-		System.out.println(sortedResultMap.get(firstKey));
-		icdProbabilityAllowed = sortedResultMap.get(firstKey) - sortedResultMap.get(firstKey) * 0.002; 
-			
+		// Return only the top 10% results 
+		int size = (int) (0.10 *  sortedResultMap.size());
+		int noOfResults = 0;
 		String icdCode, icdDescription;
+		
 		for (Map.Entry entry : sortedResultMap.entrySet()) {
-			retval = Double.compare((double) entry.getValue(), icdProbabilityAllowed);
-			if(retval < 0) {
+			if(noOfResults < size){
 				icdCode = (String)jdbcTemplate.queryForObject("SELECT icd_code FROM icd_code_to_disease_mapping_formatted WHERE id = ?", new Object[] { entry.getKey() }, String.class);
 				icdDescription = getDescpFromIcdId.get(entry.getKey());
-				//diseases.add(new Disease(icdCode, icdDescription));
-				System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue() + getDescpFromIcdId.get(entry.getKey()));
+				diseases.add(new Disease(icdCode, icdDescription));
+				//System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue() + getDescpFromIcdId.get(entry.getKey()));
 			}
+			noOfResults++;
 		}
-		System.out.println("Step 4 done");
 				
+		System.out.println("Step 4 done");
+		
+		/*for (Disease s : diseases){
+			System.out.println(s.getIcdCode()+ " - " +s.getDescription());
+		}*/
+		    	
 		return diseases;
 	}
 	
@@ -273,8 +278,8 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		// sort list based on comparator
 		Collections.sort(list, new Comparator() {
 			public int compare(Object o1, Object o2) {
-				return ((Comparable) ((Map.Entry) (o1)).getValue())
-						.compareTo(((Map.Entry) (o2)).getValue());
+				return ((Comparable) ((Map.Entry) (o2)).getValue())
+						.compareTo(((Map.Entry) (o1)).getValue());
 			}
 		});
  

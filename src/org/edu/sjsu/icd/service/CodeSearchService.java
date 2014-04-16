@@ -5,6 +5,7 @@ package org.edu.sjsu.icd.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -14,6 +15,9 @@ import org.edu.sjsu.icd.dao.IDiseaseDAO;
 import org.edu.sjsu.icd.utils.ObjectJsonBidirectionalConverter;
 import org.edu.sjsu.icd.vo.Disease;
 import org.edu.sjsu.icd.vo.Diseases;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * This is the service class to manage the data fetch and converting the data to
@@ -66,13 +70,16 @@ public class CodeSearchService {
 	 * @param tag A keyword to be looked up in all the disease descriptions.
 	 * @return Diseases with details in XML format.
 	 */
+	@JsonDeserialize(as=LinkedHashSet.class)
 	public String fetchDiseaseByTagTextAnalytics(String tag) {
+		ObjectMapper objectMapper = new ObjectMapper();
+
 		List<Disease> diseaseList = diseaseDAO.findDiseaseByTagTextAnalytics(tag);
 
 		// Create the object to maintain symmetry in XML structure.
 		Diseases diseases = new Diseases();
 		diseases.setDiseases(diseaseList);
-
+		
 		return ObjectJsonBidirectionalConverter.toJson(diseases);
 	}
 
