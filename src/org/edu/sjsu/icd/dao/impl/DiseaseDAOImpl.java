@@ -116,11 +116,11 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		List<Disease> diseases = new ArrayList<Disease>();
 		int vocabLength = 7072; //TODO : change get from db
 		int noOfIcdCode = 43028; //TODO : change get from db
-		Map<String,Integer> getIdFromVocab = new HashMap<String,Integer>();
-		Map<Integer,String> getDescpFromIcdId = new HashMap<Integer,String>();
-		Map<Short, Short> vocabhm = new HashMap<Short, Short>();
-		Map<Integer, Integer> icdhm = new HashMap<Integer, Integer>();
-		SparseMatrix vocabICDSparseMatrix = new SparseMatrix(43029);
+		//Map<String,Integer> getIdFromVocab = new HashMap<String,Integer>();
+		//Map<Integer,String> getDescpFromIcdId = new HashMap<Integer,String>();
+		//Map<Short, Short> vocabhm = new HashMap<Short, Short>();
+		//Map<Integer, Integer> icdhm = new HashMap<Integer, Integer>();
+		//SparseMatrix vocabICDSparseMatrix = new SparseMatrix(43029);
 		String[] descriptionSplitted, textByUserArr;
 		ArrayList<Integer> candidateSet = new ArrayList<Integer>();
 		Map<Integer,Double> unsortedResultMap = new HashMap<Integer,Double>();
@@ -136,10 +136,10 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		double denominator = 0;
 		double division = 0;
 		
-		// I - Create Vocab Hash map and ICD hash Map-
+		/*// I - Create Vocab Hash map and ICD hash Map-
 		
 		// Vocab Hash Map - where key is vocab keyword and value is vocabId  		
-		getIdFromVocab = (Map)jdbcTemplate.query("SELECT id,keyword FROM disease_keyword_freq_formatted", new Object[]{},
+		GlobalImpl.getIdFromVocab = (Map)jdbcTemplate.query("SELECT id,keyword FROM disease_keyword_freq_formatted", new Object[]{},
 				new ResultSetExtractor() {
 					public Object extractData(ResultSet rs) throws SQLException {
 						Map<String,Integer> getIdFromVocab = new HashMap<String,Integer>();
@@ -152,7 +152,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		);
 		
 		// ICD Hash Map - where key is ICD ID and value is ICD Description
-		getDescpFromIcdId = jdbcTemplate.query("SELECT id, icd_code, disease FROM icd_code_to_disease_mapping_formatted order by id", new Object[]{},
+		GlobalImpl.getDescpFromIcdId = jdbcTemplate.query("SELECT id, icd_code, disease FROM icd_code_to_disease_mapping_formatted order by id", new Object[]{},
 				new ResultSetExtractor() {
 					public Object extractData(ResultSet rs) throws SQLException {
 						Map<Integer,String> getDescpFromIcdId = new HashMap<Integer,String>();
@@ -167,19 +167,19 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		
 		// II - Populate the frequency Matrix rows - vocab, column - icd
 	    
-	    Iterator iter = getDescpFromIcdId.keySet().iterator();
+	    Iterator iter = GlobalImpl.getDescpFromIcdId.keySet().iterator();
 	    while(iter.hasNext()) {
 	        key = (Integer)iter.next(); // key variable has ICD10 ID
-	        value = (String)getDescpFromIcdId.get(key); // value variable has the ICD10 description
+	        value = (String)GlobalImpl.getDescpFromIcdId.get(key); // value variable has the ICD10 description
 	        descriptionSplitted = value.split("\\s"); // Get array of all words from each ICD10 description
 	        for (int index=0; index < descriptionSplitted.length ; index++) { 
 				word = descriptionSplitted[index].trim().toLowerCase();	// Get each word of ICD10 description
 				// Check if word exists in the Vocab dictionary. Vocab dictionary does not include stop words
-				vocabId = getIdFromVocab.containsKey(word) ? getIdFromVocab.get(word) : -1; // Vocab id will be -1 in case of stop words
+				vocabId = GlobalImpl.getIdFromVocab.containsKey(word) ? GlobalImpl.getIdFromVocab.get(word) : -1; // Vocab id will be -1 in case of stop words
 				if(vocabId > 0){
-					x = (int) vocabICDSparseMatrix.get(vocabId, key); // get existing freq. for vocabICDSparseMatrix[vocabId][icdId]
+					x = (int) GlobalImpl.vocabICDSparseMatrix.get(vocabId, key); // get existing freq. for vocabICDSparseMatrix[vocabId][icdId]
 					x = x + 1; // increment frequency
-					vocabICDSparseMatrix.put(vocabId, key, x); // add the updated frequency at location vocabICDSparseMatrix[vocabId][icdId]
+					GlobalImpl.vocabICDSparseMatrix.put(vocabId, key, x); // add the updated frequency at location vocabICDSparseMatrix[vocabId][icdId]
 				}
 			}	
 	    }
@@ -187,7 +187,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 
 	    //III - Create two hashmap, one with some of columns(icdhm) and other with sum or rows(vocabhm) from freq array
 	    
-		/*int sumOfRow = 0;
+		int sumOfRow = 0;
 		for(int m=1; m <= 7072; m++){
 			for(int n = 1; n <= 43028; n++){
 				sumOfRow = (int) (sumOfRow + vocabICDSparseMatrix.get(m, n));
@@ -195,18 +195,18 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 			vocabhm.put((short)m, (short)sumOfRow);
 			//System.out.println(m + " - " + sumOfRow);
 			sumOfRow = 0;
-		}*/		
+		}		
 		
 		int sumOfColumn = 0;
 		for(int n = 1; n <= 43028; n++){
 			for(int m=1; m <= 7072; m++){
-				sumOfColumn = (int) (sumOfColumn + vocabICDSparseMatrix.get(m, n));
+				sumOfColumn = (int) (sumOfColumn + GlobalImpl.vocabICDSparseMatrix.get(m, n));
 			}	
-			icdhm.put(n, sumOfColumn);
+			GlobalImpl.icdhm.put(n, sumOfColumn);
 			//System.out.println(n + " - " + sumOfColumn);
 			sumOfColumn = 0;
 		}
-		System.out.println("Step 3 done");
+		System.out.println("Step 3 done");*/
 		
 		//IV - Creating candidate set for the input by user
 		// Candidate set has all the probable icd codes possible for the input search criteria by the user
@@ -231,9 +231,9 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		for (Integer y : candidateSet){ // y is the icdId
 			//System.out.println(y);
 			for(int index=0; index < textByUserArr.length; index++){
-				if(getIdFromVocab.containsKey(textByUserArr[index].trim().toLowerCase())){
-					numerator = vocabICDSparseMatrix.get(getIdFromVocab.get(textByUserArr[index].trim().toLowerCase()),y) + 1;
-					denominator = vocabLength + icdhm.get(y);
+				if(GlobalImpl.getIdFromVocab.containsKey(textByUserArr[index].trim().toLowerCase())){
+					numerator = GlobalImpl.vocabICDSparseMatrix.get(GlobalImpl.getIdFromVocab.get(textByUserArr[index].trim().toLowerCase()),y) + 1;
+					denominator = vocabLength + GlobalImpl.icdhm.get(y);
 					division = numerator/denominator;
 					temp = temp + Math.log10(numerator/denominator);
 				}
@@ -255,7 +255,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		for (Map.Entry entry : sortedResultMap.entrySet()) {
 			if(noOfResults < size){
 				icdCode = (String)jdbcTemplate.queryForObject("SELECT icd_code FROM icd_code_to_disease_mapping_formatted WHERE id = ?", new Object[] { entry.getKey() }, String.class);
-				icdDescription = getDescpFromIcdId.get(entry.getKey());
+				icdDescription = GlobalImpl.getDescpFromIcdId.get(entry.getKey());
 				diseases.add(new Disease(icdCode, icdDescription));
 				//System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue() + getDescpFromIcdId.get(entry.getKey()));
 			}
@@ -264,9 +264,9 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 				
 		System.out.println("Step 4 done");
 		
-		for (Disease s : diseases){
+		/*for (Disease s : diseases){
 			System.out.println(s.getIcdCode()+ " - " +s.getDescription());
-		}
+		}*/
 		    	
 		return diseases;
 	}

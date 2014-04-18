@@ -51,6 +51,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<bean id="globalDAO" class="org.edu.sjsu.icd.dao.impl.GlobalImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="registrationDAO" class="org.edu.sjsu.icd.dao.impl.RegistrationDAOImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
