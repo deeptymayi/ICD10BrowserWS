@@ -6,6 +6,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.edu.sjsu.icd.dao.impl.SparseMatrixBuilderDAO;
 import org.edu.sjsu.icd.service.CodeSearchService;
 
 /**
@@ -19,6 +20,16 @@ public class SearchService {
 	private CodeSearchService codeSearchService;
 
 	/**
+	 * 
+	 */
+	public void init() {
+		System.out.println("----------");
+		SparseMatrixBuilderDAO.generateSparseMatrix();
+		System.out.println("---------- CrunchifyExample Servlet Initialized successfully ----------");
+		System.out.println("----------");
+	}
+
+	/**
 	 * Fetches disease details based on the ICD code.
 	 * 
 	 * @param i ICD code
@@ -30,7 +41,7 @@ public class SearchService {
 	public String fetchById(@PathParam("i") String i) {
 		return codeSearchService.fetchDiseaseById(i);
 	}
-	
+
 	/**
 	 * Fetches the list of disease which has the mention of the tagged word in
 	 * their description.

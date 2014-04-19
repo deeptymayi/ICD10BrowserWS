@@ -1,6 +1,5 @@
 package org.edu.sjsu.icd.dao.impl;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,9 +15,6 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.edu.sjsu.icd.dao.IDiseaseDAO;
-import org.edu.sjsu.icd.dao.SparseMatrix;
-import org.edu.sjsu.icd.dao.SparseVector;
-import org.edu.sjsu.icd.dao.ST;
 import org.edu.sjsu.icd.vo.Disease;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -115,21 +111,14 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		
 		List<Disease> diseases = new ArrayList<Disease>();
 		int vocabLength = 7072; //TODO : change get from db
-		int noOfIcdCode = 43028; //TODO : change get from db
 		//Map<String,Integer> getIdFromVocab = new HashMap<String,Integer>();
 		//Map<Integer,String> getDescpFromIcdId = new HashMap<Integer,String>();
 		//Map<Short, Short> vocabhm = new HashMap<Short, Short>();
 		//Map<Integer, Integer> icdhm = new HashMap<Integer, Integer>();
 		//SparseMatrix vocabICDSparseMatrix = new SparseMatrix(43029);
-		String[] descriptionSplitted, textByUserArr;
+		String[] textByUserArr;
 		ArrayList<Integer> candidateSet = new ArrayList<Integer>();
 		Map<Integer,Double> unsortedResultMap = new HashMap<Integer,Double>();
-		Integer firstKey;
-		Double icdProbabilityAllowed; 
-		int retval;
-		Integer key;
-		String value, word;
-		int vocabId = -1;
 		int x;
 		double temp =0;
 		double numerator = 0;
@@ -139,7 +128,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		/*// I - Create Vocab Hash map and ICD hash Map-
 		
 		// Vocab Hash Map - where key is vocab keyword and value is vocabId  		
-		GlobalImpl.getIdFromVocab = (Map)jdbcTemplate.query("SELECT id,keyword FROM disease_keyword_freq_formatted", new Object[]{},
+		SparseMatrixBuilderDAO.getIdFromVocab = (Map)jdbcTemplate.query("SELECT id,keyword FROM disease_keyword_freq_formatted", new Object[]{},
 				new ResultSetExtractor() {
 					public Object extractData(ResultSet rs) throws SQLException {
 						Map<String,Integer> getIdFromVocab = new HashMap<String,Integer>();
@@ -152,7 +141,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		);
 		
 		// ICD Hash Map - where key is ICD ID and value is ICD Description
-		GlobalImpl.getDescpFromIcdId = jdbcTemplate.query("SELECT id, icd_code, disease FROM icd_code_to_disease_mapping_formatted order by id", new Object[]{},
+		SparseMatrixBuilderDAO.getDescpFromIcdId = jdbcTemplate.query("SELECT id, icd_code, disease FROM icd_code_to_disease_mapping_formatted order by id", new Object[]{},
 				new ResultSetExtractor() {
 					public Object extractData(ResultSet rs) throws SQLException {
 						Map<Integer,String> getDescpFromIcdId = new HashMap<Integer,String>();
@@ -167,19 +156,19 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		
 		// II - Populate the frequency Matrix rows - vocab, column - icd
 	    
-	    Iterator iter = GlobalImpl.getDescpFromIcdId.keySet().iterator();
+	    Iterator iter = SparseMatrixBuilderDAO.getDescpFromIcdId.keySet().iterator();
 	    while(iter.hasNext()) {
 	        key = (Integer)iter.next(); // key variable has ICD10 ID
-	        value = (String)GlobalImpl.getDescpFromIcdId.get(key); // value variable has the ICD10 description
+	        value = (String)SparseMatrixBuilderDAO.getDescpFromIcdId.get(key); // value variable has the ICD10 description
 	        descriptionSplitted = value.split("\\s"); // Get array of all words from each ICD10 description
 	        for (int index=0; index < descriptionSplitted.length ; index++) { 
 				word = descriptionSplitted[index].trim().toLowerCase();	// Get each word of ICD10 description
 				// Check if word exists in the Vocab dictionary. Vocab dictionary does not include stop words
-				vocabId = GlobalImpl.getIdFromVocab.containsKey(word) ? GlobalImpl.getIdFromVocab.get(word) : -1; // Vocab id will be -1 in case of stop words
+				vocabId = SparseMatrixBuilderDAO.getIdFromVocab.containsKey(word) ? SparseMatrixBuilderDAO.getIdFromVocab.get(word) : -1; // Vocab id will be -1 in case of stop words
 				if(vocabId > 0){
-					x = (int) GlobalImpl.vocabICDSparseMatrix.get(vocabId, key); // get existing freq. for vocabICDSparseMatrix[vocabId][icdId]
+					x = (int) SparseMatrixBuilderDAO.vocabICDSparseMatrix.get(vocabId, key); // get existing freq. for vocabICDSparseMatrix[vocabId][icdId]
 					x = x + 1; // increment frequency
-					GlobalImpl.vocabICDSparseMatrix.put(vocabId, key, x); // add the updated frequency at location vocabICDSparseMatrix[vocabId][icdId]
+					SparseMatrixBuilderDAO.vocabICDSparseMatrix.put(vocabId, key, x); // add the updated frequency at location vocabICDSparseMatrix[vocabId][icdId]
 				}
 			}	
 	    }
@@ -200,9 +189,9 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		int sumOfColumn = 0;
 		for(int n = 1; n <= 43028; n++){
 			for(int m=1; m <= 7072; m++){
-				sumOfColumn = (int) (sumOfColumn + GlobalImpl.vocabICDSparseMatrix.get(m, n));
+				sumOfColumn = (int) (sumOfColumn + SparseMatrixBuilderDAO.vocabICDSparseMatrix.get(m, n));
 			}	
-			GlobalImpl.icdhm.put(n, sumOfColumn);
+			SparseMatrixBuilderDAO.icdhm.put(n, sumOfColumn);
 			//System.out.println(n + " - " + sumOfColumn);
 			sumOfColumn = 0;
 		}
@@ -226,14 +215,13 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 			);	
 		}
 		
-		word = "";
 		// For each of the ICD10 codes in the candidate set find the logarithmic probability for each icd10 code being the most accurate resultset
 		for (Integer y : candidateSet){ // y is the icdId
 			//System.out.println(y);
 			for(int index=0; index < textByUserArr.length; index++){
-				if(GlobalImpl.getIdFromVocab.containsKey(textByUserArr[index].trim().toLowerCase())){
-					numerator = GlobalImpl.vocabICDSparseMatrix.get(GlobalImpl.getIdFromVocab.get(textByUserArr[index].trim().toLowerCase()),y) + 1;
-					denominator = vocabLength + GlobalImpl.icdhm.get(y);
+				if(SparseMatrixBuilderDAO.getIdFromVocab.containsKey(textByUserArr[index].trim().toLowerCase())){
+					numerator = SparseMatrixBuilderDAO.vocabICDSparseMatrix.get(SparseMatrixBuilderDAO.getIdFromVocab.get(textByUserArr[index].trim().toLowerCase()),y) + 1;
+					denominator = vocabLength + SparseMatrixBuilderDAO.icdhm.get(y);
 					division = numerator/denominator;
 					temp = temp + Math.log10(numerator/denominator);
 				}
@@ -255,7 +243,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		for (Map.Entry entry : sortedResultMap.entrySet()) {
 			if(noOfResults < size){
 				icdCode = (String)jdbcTemplate.queryForObject("SELECT icd_code FROM icd_code_to_disease_mapping_formatted WHERE id = ?", new Object[] { entry.getKey() }, String.class);
-				icdDescription = GlobalImpl.getDescpFromIcdId.get(entry.getKey());
+				icdDescription = SparseMatrixBuilderDAO.getDescpFromIcdId.get(entry.getKey());
 				diseases.add(new Disease(icdCode, icdDescription));
 				//System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue() + getDescpFromIcdId.get(entry.getKey()));
 			}

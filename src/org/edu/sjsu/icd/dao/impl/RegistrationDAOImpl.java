@@ -58,12 +58,6 @@ public class RegistrationDAOImpl implements IRegistrationDAO {
 		User user = null;
 
 		try {
-			
-			if(userName.equals("admin")){
-				// Generate the sparse matrix
-				GlobalImpl.generateSparseMatrix();
-			}
-			
 			// Create a query using the JDBC template and fetch the record.
 			user = jdbcTemplate.queryForObject(query, new Object[] { userName, password },
 			        new BeanPropertyRowMapper<User>(User.class));
