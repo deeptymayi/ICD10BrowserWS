@@ -11,6 +11,7 @@ $(function () {
 				var aaData = JSON.parse(data).diseases;
 				//alert("success");
 				$('#searchIcdResult').dataTable({
+					"aaSorting": [],
 					"aaData": aaData,
 					"aoColumns": [
 		              {"mData": "icdCode", sDefaultContent: "",  "sTitle": "ICD 10 Code", "sWidth": "25%" },
