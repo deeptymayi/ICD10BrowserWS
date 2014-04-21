@@ -9,9 +9,11 @@ import java.util.Map;
 
 import org.edu.sjsu.icd.dao.IFraudBillsDAO;
 import org.edu.sjsu.icd.dao.IMedBillDAO;
+import org.edu.sjsu.icd.dao.INewClaimsDAO;
 import org.edu.sjsu.icd.utils.ObjectJsonBidirectionalConverter;
 import org.edu.sjsu.icd.vo.Bill;
 import org.edu.sjsu.icd.vo.Bills;
+import org.springframework.scheduling.annotation.Scheduled;
 
 /**
  * @author Deepti
@@ -28,6 +30,8 @@ public class FraudViewerService {
 	 * Medical Bill DAO object.
 	 */
 	private IMedBillDAO    medBillDAO;
+	
+	private INewClaimsDAO newClaimsDAO;
 
 	/**
 	 * @param fraudBillsDAO the fraudBillsDAO to set
@@ -41,6 +45,13 @@ public class FraudViewerService {
 	 */
 	public void setMedBillDAO(IMedBillDAO medBillDAO) {
 		this.medBillDAO = medBillDAO;
+	}
+
+	/**
+	 * @param newClaimsDAO the newClaimsDAO to set
+	 */
+	public void setNewClaimsDAO(INewClaimsDAO newClaimsDAO) {
+		this.newClaimsDAO = newClaimsDAO;
 	}
 
 	/**
@@ -89,5 +100,13 @@ public class FraudViewerService {
 		summary.put("totalBills", String.valueOf(totalBills));
 
 		return ObjectJsonBidirectionalConverter.toJson(summary);
+	}
+	
+	/**
+	 * 
+	 */
+	public void prepareNewClaimsForFraudDetection() {
+		System.out.println("Firing the cron for fraud detection.");
+		newClaimsDAO.refresh();
 	}
 }

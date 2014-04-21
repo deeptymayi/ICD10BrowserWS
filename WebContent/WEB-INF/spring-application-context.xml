@@ -16,7 +16,7 @@
 		<property name="codeSearchService" ref="codeSearchService" />
 	</bean>
 
-	<bean id="eventListenerBean" class="org.edu.sjsu.icd.service.SparseMatrixCreatorAppListener"/>
+	<bean id="eventListenerBean" class="org.edu.sjsu.icd.service.SparseMatrixCreatorAppListener" />
 
 	<bean id="accountService" class="org.edu.sjsu.icd.webservices.AccountServices">
 		<property name="authenticationService" ref="authenticationService" />
@@ -47,6 +47,7 @@
 	<bean id="fraudViewerService" class="org.edu.sjsu.icd.service.FraudViewerService">
 		<property name="fraudBillsDAO" ref="fraudBillsDAO" />
 		<property name="medBillDAO" ref="medBillDAO" />
+		<property name="newClaimsDAO" ref="newClaimsDAO" />
 	</bean>
 
 	<bean id="diseaseDAO" class="org.edu.sjsu.icd.dao.impl.DiseaseDAOImpl">
@@ -74,6 +75,10 @@
 	</bean>
 
 	<bean id="fraudBillsDAO" class="org.edu.sjsu.icd.dao.impl.FraudBillsDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="newClaimsDAO" class="org.edu.sjsu.icd.dao.impl.NewClaimsDAOImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
