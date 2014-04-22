@@ -48,6 +48,7 @@
 		<property name="fraudBillsDAO" ref="fraudBillsDAO" />
 		<property name="medBillDAO" ref="medBillDAO" />
 		<property name="newClaimsDAO" ref="newClaimsDAO" />
+		<property name="diseaseDAO" ref="diseaseDAO" />
 	</bean>
 
 	<bean id="diseaseDAO" class="org.edu.sjsu.icd.dao.impl.DiseaseDAOImpl">
