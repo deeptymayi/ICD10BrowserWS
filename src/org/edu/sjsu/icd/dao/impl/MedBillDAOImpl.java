@@ -3,6 +3,9 @@
  */
 package org.edu.sjsu.icd.dao.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -42,13 +45,17 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	@Override
 	public boolean persistBillInformation(Patient patient) {
 		// Query to insert Billing information to the Billing_record DB Table
-		String query = "INSERT INTO MEDICAL_BILL (BILLING_DATE, BILL_NUMBER, ICD10_CODE, BILLING_AMOUNT) VALUES (?, ?, ?, ?)";
+		String query = "INSERT INTO MEDICAL_BILL (BILLING_DATE, BILL_NUMBER, ICD10_CODE, BILLING_AMOUNT, CREATE_DATE) VALUES (?, ?, ?, ?, ?)";
 		boolean returnValue = false;
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		String date = dateFormat.format(cal.getTime());
 
 		// Create a query using the JDBC template and insert the record.
 		int result = jdbcTemplate.update(query,
 		        new Object[] { patient.getBillingDate(), patient.getBillNumber(), patient.getIcdCode(),
-		                patient.getBillAmount() });
+		                patient.getBillAmount(), date});
 
 		if (result != 0)
 			returnValue = true;

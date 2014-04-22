@@ -140,9 +140,9 @@ public class FraudViewerService {
 					String s1 = (diseases.get(j)).getIcdCode();
 					if (s1 != null && s1.trim().length() > 0) {
 						if (!"".equalsIgnoreCase(s)) {
-							s = ", " + s;
+							s = s + ", ";
 						}
-						s = s1 + s;
+						s = s + s1;
 					}
 				}
 
@@ -165,7 +165,7 @@ public class FraudViewerService {
 	 * This cron job will trigger the mapreduce for fraud analysis of the new
 	 * claims data.
 	 */
-	@Scheduled(cron = "0 11 00 * * *")
+	@Scheduled(cron = "0 10 00 * * *")
 	public void runFraudDetectionMRJob() {
 		System.out.println("Firing the cron for MR detection job.");
 		try {

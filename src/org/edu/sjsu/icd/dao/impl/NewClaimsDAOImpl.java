@@ -44,7 +44,7 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 		        + "LEFT JOIN medical_record mr ON mr.patient_id = p.patient_id LEFT JOIN medical_bill mb "
 		        + "ON mb.bill_number = mr.bill_number LEFT JOIN icd_code_to_disease_mapping icd "
 		        + "ON mb.icd10_code = icd.icd_code WHERE mr.bill_number IS NOT NULL AND mb.billing_date IS NOT NULL "
-		        + "AND mr.diagnosis is NOT NULL AND mr.icd10_code is NOT NULL AND billing_date > '" + date
+		        + "AND mr.diagnosis is NOT NULL AND mr.icd10_code is NOT NULL AND create_date > '" + date
 		        + "'";
 
 		// Create a query using the JDBC template and insert the record.
