@@ -14,7 +14,7 @@ import org.edu.sjsu.icd.service.CodeSearchService;
  * @author Deepti
  */
 @Path("icdservice")
-public class SearchService {
+public class SearchService implements ISearchService {
 
 	private CodeSearchService codeSearchService;
 

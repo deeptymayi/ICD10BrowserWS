@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author Deepti
  */
 @Path("accountservice")
-public class AccountServices {
+public class AccountServices implements IAccountServices {
 
 	private AuthenticationService authenticationService;
 

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author Deepti
  */
 @Path("ptrservice")
-public class PrescriptionService {
+public class PrescriptionService implements IPrescriptionService{
 	private PrescriptionManagementService prescriptionManagementService;
 
 	/**

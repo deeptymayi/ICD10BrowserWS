@@ -14,7 +14,7 @@ import org.edu.sjsu.icd.service.FraudViewerService;
  * @author Deepti
  */
 @Path("bfr")
-public class BillingFraudService {
+public class BillingFraudService implements IBillingFraudService {
 
 	private FraudViewerService fraudViewerService;
 
