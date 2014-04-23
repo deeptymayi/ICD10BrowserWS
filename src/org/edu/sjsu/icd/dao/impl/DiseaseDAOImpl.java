@@ -51,7 +51,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 	public Disease findDiseaseByICDCode(String icdCode) {
 
 		// Query to retrieve ICD code record by the ICD code
-		String query = "SELECT * FROM ICD_CODE_TO_DISEASE_MAPPING WHERE ICD_CODE=?";
+		String query = "select * from icd_code_to_disease_mapping where icd_code=?";
 
 		Disease disease = null;
 
@@ -83,7 +83,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		// Build the query to retrieve ICD code record by tag in the description
 		// based on the search field.
 		if (args.length > 0) {
-			query.append("SELECT * FROM ICD_CODE_TO_DISEASE_MAPPING WHERE DESCRIPTION LIKE '%" + args[0]
+			query.append("select * from icd_code_to_disease_mapping where description like '%" + args[0]
 			        + "%'");
 
 			// If more than one keyword is given then the query will have
@@ -202,7 +202,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 				
 		textByUserArr = tag.split("\\s");
 		for(int index=0; index < textByUserArr.length; index++){			
-			candidateSet = jdbcTemplate.query("SELECT id FROM ICD_CODE_TO_DISEASE_MAPPING_FORMATTED WHERE DISEASE LIKE '%" + textByUserArr[index].trim().toLowerCase() + "%'", new Object[]{},
+			candidateSet = jdbcTemplate.query("select id from icd_code_to_disease_mapping_formatted where disease like '%" + textByUserArr[index].trim().toLowerCase() + "%'", new Object[]{},
 					new ResultSetExtractor() {
 						public Object extractData(ResultSet rs) throws SQLException {
 							ArrayList<Integer> candidateSet = new ArrayList<Integer>();
@@ -242,7 +242,7 @@ public class DiseaseDAOImpl implements IDiseaseDAO {
 		
 		for (Map.Entry entry : sortedResultMap.entrySet()) {
 			if(noOfResults < size){
-				icdCode = (String)jdbcTemplate.queryForObject("SELECT icd_code FROM icd_code_to_disease_mapping_formatted WHERE id = ?", new Object[] { entry.getKey() }, String.class);
+				icdCode = (String)jdbcTemplate.queryForObject("select icd_code from icd_code_to_disease_mapping_formatted where id = ?", new Object[] { entry.getKey() }, String.class);
 				icdDescription = SparseMatrixBuilderDAO.getDescpFromIcdId.get(entry.getKey());
 				diseases.add(new Disease(icdCode, icdDescription));
 				//System.out.println("Key : " + entry.getKey() + " Value : " + entry.getValue() + getDescpFromIcdId.get(entry.getKey()));

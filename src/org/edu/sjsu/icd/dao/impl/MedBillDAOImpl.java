@@ -45,7 +45,7 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	@Override
 	public boolean persistBillInformation(Patient patient) {
 		// Query to insert Billing information to the Billing_record DB Table
-		String query = "INSERT INTO MEDICAL_BILL (BILLING_DATE, BILL_NUMBER, ICD10_CODE, BILLING_AMOUNT, CREATE_DATE) VALUES (?, ?, ?, ?, ?)";
+		String query = "insert into medical_bill (billing_date, bill_number, icd10_code, billing_amount, create_date) values (?, ?, ?, ?, ?)";
 		boolean returnValue = false;
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -74,7 +74,7 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	public long fetchTotalNoOfBillsByDateRange(String startDate, String endDate) {
 		List<Bill> bills = null;
 
-		String query = "SELECT BILL_NUMBER FROM MEDICAL_BILL WHERE BILLING_DATE >= '" + startDate + "' AND BILLING_DATE <= '" + endDate + "'";
+		String query = "select bill_number from medical_bill where billing_date >= '" + startDate + "' and billing_date <= '" + endDate + "'";
 
 		try {
 			bills = jdbcTemplate.query(query, new BeanPropertyRowMapper<Bill>(Bill.class));

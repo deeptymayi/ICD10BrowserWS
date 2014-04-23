@@ -36,15 +36,15 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 		String date = dateFormat.format(cal.getTime());
 
 		// Query to insert Patient information to the Patient DB Table
-		String query1 = "TRUNCATE new_claims";
-		String query2 = "INSERT INTO NEW_CLAIMS (patient_Id, first_name, last_name, bill_number, "
+		String query1 = "truncate new_claims";
+		String query2 = "insert into new_claims (patient_id, first_name, last_name, bill_number, "
 		        + "diagnosis, billed_icd_code, billing_date, master_icd_code, icd_description) "
-		        + "SELECT p.patient_Id, p.first_name, p.last_name, mr.bill_number, mr.diagnosis, "
-		        + "mr.icd10_code, mb.billing_date, icd.icd_code, icd.description FROM patient p "
-		        + "LEFT JOIN medical_record mr ON mr.patient_id = p.patient_id LEFT JOIN medical_bill mb "
-		        + "ON mb.bill_number = mr.bill_number LEFT JOIN icd_code_to_disease_mapping icd "
-		        + "ON mb.icd10_code = icd.icd_code WHERE mr.bill_number IS NOT NULL AND mb.billing_date IS NOT NULL "
-		        + "AND mr.diagnosis is NOT NULL AND mr.icd10_code is NOT NULL AND create_date > '" + date
+		        + "select p.patient_id, p.first_name, p.last_name, mr.bill_number, mr.diagnosis, "
+		        + "mr.icd10_code, mb.billing_date, icd.icd_code, icd.description from patient p "
+		        + "left join medical_record mr on mr.patient_id = p.patient_id left join medical_bill mb "
+		        + "on mb.bill_number = mr.bill_number left join icd_code_to_disease_mapping icd "
+		        + "on mb.icd10_code = icd.icd_code where mr.bill_number is not null and mb.billing_date is not null "
+		        + "and mr.diagnosis is not null and mr.icd10_code is not null and create_date > '" + date
 		        + "'";
 
 		// Create a query using the JDBC template and insert the record.

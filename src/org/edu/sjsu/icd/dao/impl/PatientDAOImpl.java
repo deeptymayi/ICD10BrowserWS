@@ -28,7 +28,7 @@ public class PatientDAOImpl implements IPatientDAO {
 	public boolean persistPatientInformation(Patient patient) {
 
 		// Query to insert Patient information to the Patient DB Table
-		String query = "INSERT INTO PATIENT (PATIENT_ID, FIRST_NAME, LAST_NAME, DOB, GENDER, PHONE_NUMBER, ADDRESSLINE_1, ADDRESSLINE_2, CITY, STATE, ZIP_CODE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into patient (patient_id, first_name, last_name, dob, gender, phone_number, addressline_1, addressline_2, city, state, zip_code) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		boolean returnValue = false;
 
 		// Create a query using the JDBC template and insert the record.
@@ -49,7 +49,7 @@ public class PatientDAOImpl implements IPatientDAO {
 	public Patient fetchPatientById(String patientId) {
 
 		// Query to retrieve Patient record by the patient id
-		String query = "SELECT * FROM PATIENT WHERE PATIENT_ID=?";
+		String query = "select * from patient where patient_id=?";
 
 		// Create a query using the JDBC template and fetch the record.
 		return jdbcTemplate.queryForObject(query, new Object[] { patientId },

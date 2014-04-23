@@ -28,7 +28,7 @@ public class RegistrationDAOImpl implements IRegistrationDAO {
 
 	public boolean persistNewUser(User user) {
 		// Query to insert user details to the Registration table
-		String query = "INSERT INTO REGISTRATION (FIRST_NAME, LAST_NAME, USERNAME, PASSWORD) VALUES (?, ?, ?, ?)";
+		String query = "insert into registration (first_name, last_name, username, password) values (?, ?, ?, ?)";
 
 		int result = 0;
 		boolean returnValue = false;
@@ -53,7 +53,7 @@ public class RegistrationDAOImpl implements IRegistrationDAO {
 	public User fetchUserDetails(String userName, String password) {
 
 		// Query to retrieve User record
-		String query = "SELECT * FROM REGISTRATION WHERE USERNAME=? AND PASSWORD=?";
+		String query = "select * from registration where username=? and password=?";
 
 		User user = null;
 

@@ -38,7 +38,7 @@ public class MedRecordDAOImpl implements IMedRecordDAO {
 	public boolean persistMedRecord(Patient patient) {
 		// Query to insert Patient Diagnosis information to the Medical_Record
 		// DB Table
-		String query = "INSERT INTO MEDICAL_RECORD (PATIENT_ID, BILL_NUMBER, DIAGNOSIS, ICD10_CODE, MEDICINES, DOSAGE) VALUES (?, ?, ?, ?, ?, ?)";
+		String query = "insert into medical_record (patient_id, bill_number, diagnosis, icd10_code, medicines, dosage) values (?, ?, ?, ?, ?, ?)";
 		boolean returnValue = false;
 
 		// Create a query using the JDBC template and insert the record.

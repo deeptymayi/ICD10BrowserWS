@@ -54,7 +54,7 @@ public class SparseMatrixBuilderDAO {
 		// I - Create vocab Hash map and ICD hash Map-
 
 		// Vocab Hash Map - where key is vocab keyword and value is vocabId
-		getIdFromVocab = (Map) jdbcTemplate.query("SELECT id,keyword FROM disease_keyword_freq_formatted",
+		getIdFromVocab = (Map) jdbcTemplate.query("select id,keyword from disease_keyword_freq_formatted",
 		        new Object[] {}, new ResultSetExtractor() {
 			        public Object extractData(ResultSet rs) throws SQLException {
 				        Map<String, Integer> getIdFromVocab = new HashMap<String, Integer>();
@@ -67,7 +67,7 @@ public class SparseMatrixBuilderDAO {
 
 		// ICD Hash Map - where key is ICD ID and value is ICD Description
 		getDescpFromIcdId = jdbcTemplate.query(
-		        "SELECT id, icd_code, disease FROM icd_code_to_disease_mapping_formatted order by id",
+		        "select id, icd_code, disease from icd_code_to_disease_mapping_formatted order by id",
 		        new Object[] {}, new ResultSetExtractor() {
 			        public Object extractData(ResultSet rs) throws SQLException {
 				        Map<Integer, String> getDescpFromIcdId = new HashMap<Integer, String>();

@@ -40,7 +40,7 @@ public class FraudBillsDAOImpl implements IFraudBillsDAO {
 	@Override
 	public Bill fetchBillByNumber(String billNumber) {
 		// Query to retrieve fraud bill record by the bill number
-		String query = "SELECT * FROM FRAUD_BILLS WHERE BILL_NUMBER=?";
+		String query = "select * from fraud_bills where bill_number=?";
 
 		Bill bill = null;
 
@@ -67,8 +67,8 @@ public class FraudBillsDAOImpl implements IFraudBillsDAO {
 	public List<Bill> fetchFraudBillsByDateRange(String startDate, String endDate) {
 		List<Bill> bills = null;
 
-		String query = "SELECT BILL_NUMBER, FIRST_NAME, LAST_NAME, BILLING_DATE FROM FRAUD_BILLS WHERE BILLING_DATE >= '"
-		        + startDate + "' AND BILLING_DATE <= '" + endDate + "'";
+		String query = "select bill_number, first_name, last_name, billing_date from fraud_bills where billing_date >= '"
+		        + startDate + "' and billing_date <= '" + endDate + "'";
 
 		try {
 			bills = jdbcTemplate.query(query, new BeanPropertyRowMapper<Bill>(Bill.class));
