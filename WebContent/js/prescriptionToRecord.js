@@ -80,7 +80,8 @@ $(function () {
                     	$("#ptrModalSuccess").modal({
                   		   show:true,
                   		   backdrop:'static'
-                  		});                       
+                  		}); 
+                        $('#patientInformationForm').trigger("reset");
                     },
                     error: function(xhr, textStatus, errorThrown) {
                     	$("#ptrModalError").modal({
@@ -88,7 +89,7 @@ $(function () {
                  		   backdrop:'static'
                  		});
                     }
-                });  
+                }); 
         }
         return false;
     });

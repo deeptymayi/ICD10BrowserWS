@@ -1,23 +1,32 @@
 $(function () {
+	
     var summaryDetails;
     $('#tabs').tab();      
 	$( "#fromdate" ).calendarsPicker({yearRange: 'any'});	
 	$( "#todate" ).calendarsPicker({yearRange: 'any'});
 	
     var billingFraudDetection= function() {
-		var fromDate;
-		var toDate;
+		var fromDate, fromDateTemp;
+		var toDate, toDateTemp;
 		
 		if($("#fromdate").val()){
-    		date = new Date($("#fromdate").val());
-    		fromDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			fromDateTemp = new Date($("#fromdate").val());
+    		fromDate = fromDateTemp.getFullYear()+"-"+(fromDateTemp.getMonth()+1)+"-"+fromDateTemp.getDate();
     	}
     	
     	if($("#todate").val()){
-    		date = new Date($("#todate").val());
-    		toDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+    		toDateTemp = new Date($("#todate").val());
+    		toDate = toDateTemp.getFullYear()+"-"+(toDateTemp.getMonth()+1)+"-"+toDateTemp.getDate();
     	}
-		    	
+
+    	if (toDateTemp < fromDateTemp){    		
+    		$("#dateRangeError").modal({
+				show : true,
+				backdrop : 'static'
+			});
+    		return;
+    	}
+    	
 		$.ajax({
 			type: "GET",
 			url: "/ICD10BrowserWS/rest/bfr/fetchByRange/" + fromDate + "_" + toDate,

@@ -78,6 +78,7 @@ body {
 					<div class="tab-pane active" id="detectBillingFraud">
 						<br>
 						<div class="row">
+							<form id="fraudDetectionForm">
 							<div class="form-group col-md-2">
 								<label for="name"> From Date </label> <input type="text"
 									class="form-control" id="fromdate" name="fromdate" required
@@ -87,7 +88,8 @@ body {
 								<label for="name"> To Date </label> <input type="text"
 									class="form-control" id="todate" name="todate" required
 									placeholder="Select Date" />
-							</div>														
+							</div>	
+							</form>													
 							<div class="col-lg-6" style="margin-top:23px;">
 								<button class="btn btn-success" id="searchBillingFraud" >Search</button>
 							</div>
@@ -117,9 +119,9 @@ body {
 		        <p>Patient First Name : <span id="firstName"> </span></p>
 		        <p>Patient Last Name : <span id="lastName"> </span></p>
 		        <p>Bill Number : <span id="billNumber"> </span></p>
-		        <p>Symtoms : <span id="symptoms"> </span></p>
+		        <p>Symptoms : <span id="symptoms"> </span></p>
 		        <p>Billed ICD10 Code : <span id="billIcd"> </span></p>
-		        <p>Suggested ICD10 Codes : <span id="suggestedIcd"> </span></p>
+		        <p>Possible ICD10 Codes : <span id="suggestedIcd"> </span></p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -127,6 +129,24 @@ body {
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->	
+		<div class="modal fade" id="dateRangeError">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+		        <h4 class="modal-title">Input Date Error !!!</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p> <b>To date</b> must be greater than <b>From date</b></br>
+		            Please enter the correct date values and re-submit
+		         </p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 		<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 	</div>
 	<!-- /container -->
