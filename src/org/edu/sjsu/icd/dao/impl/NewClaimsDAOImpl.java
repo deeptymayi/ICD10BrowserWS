@@ -43,7 +43,7 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 		        + "mr.icd10_code, mb.billing_date, icd.icd_code, icd.description from patient p "
 		        + "left join medical_record mr on mr.patient_id = p.patient_id left join medical_bill mb "
 		        + "on mb.bill_number = mr.bill_number left join icd_code_to_disease_mapping icd "
-		        + "on mb.icd10_code = icd.icd_code where mr.bill_number is not null and mb.billing_date is not null "
+		        + "on mr.icd10_code = icd.icd_code where mr.bill_number is not null and mb.billing_date is not null "
 		        + "and mr.diagnosis is not null and mr.icd10_code is not null and create_date > '" + date
 		        + "'";
 
