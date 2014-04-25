@@ -26,7 +26,7 @@ $(function () {
               		   backdrop:'static'
               		}); 
                     setTimeout(function () {
-                        window.location.href = "/ICD10BrowserWS/searchICD10.jsp";
+                        window.location.href = "/ICD10BrowserWS/searchICD10TextAnalytics.jsp";
                      }, 3000);
                 },
                 error: function(xhr, textStatus, errorThrown) {

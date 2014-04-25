@@ -61,10 +61,7 @@ $(function () {
 			dataType: 'json',
 			success: function(data) {
 				summaryDetails = JSON.parse(data);
-				/*summaryDetails.totalBills = 50;
-				summaryDetails.correctBills = 20;
-				summaryDetails.fraudBills = 25;
-				summaryDetails.billNotGenerated = 5;*/
+				summaryDetails.correctBills = summaryDetails.totalBills - summaryDetails.fraudBills;
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				alert("error");
