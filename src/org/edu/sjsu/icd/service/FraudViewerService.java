@@ -155,7 +155,7 @@ public class FraudViewerService {
 	 * This cron job will identify the new claim data that will be analyzed for
 	 * fraud.
 	 */
-	@Scheduled(cron = "0 01 00 * * *")
+	@Scheduled(cron = "0 13 00 * * *")
 	public void prepareNewClaimsForFraudDetection() {
 		System.out.println("Firing the cron for fraud detection.");
 		newClaimsDAO.refresh();
@@ -165,7 +165,7 @@ public class FraudViewerService {
 	 * This cron job will trigger the mapreduce for fraud analysis of the new
 	 * claims data.
 	 */
-	@Scheduled(cron = "0 10 00 * * *")
+	@Scheduled(cron = "0 15 00 * * *")
 	public void runFraudDetectionMRJob() {
 		System.out.println("Firing the cron for MR detection job.");
 		try {
