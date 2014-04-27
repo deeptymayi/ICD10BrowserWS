@@ -164,8 +164,9 @@ public class FraudViewerService {
 	/**
 	 * This cron job will trigger the mapreduce for fraud analysis of the new
 	 * claims data.
+	 * 
+	 * @Scheduled(cron = "0 00,10,20,30,40,50 * * * *")	
 	 */
-	@Scheduled(cron = "0 00,10,20,30,40,50 * * * *")
 	public void runFraudDetectionMRJob() {
 		System.out.println("Firing the cron for MR detection job.");
 		try {

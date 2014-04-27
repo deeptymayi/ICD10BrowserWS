@@ -32,7 +32,7 @@ public class FDMapper extends Mapper<LongWritable, InputWritable, Text, IntWrita
 					}
 				}
 
-				if ((numberOfMatches * 1.0) / wordCount < 0.9) {
+				if ((numberOfMatches * 1.0) / wordCount < 0.6) {
 					fraudTransaction = true;
 				}
 			}
