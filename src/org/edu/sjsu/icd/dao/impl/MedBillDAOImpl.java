@@ -52,10 +52,12 @@ public class MedBillDAOImpl implements IMedBillDAO {
 		Calendar cal = Calendar.getInstance();
 		String date = dateFormat.format(cal.getTime());
 
+		System.out.println("User inserted a new bill [#" + patient.getBillNumber() + "] at [" + date + "].");
+
 		// Create a query using the JDBC template and insert the record.
 		int result = jdbcTemplate.update(query,
 		        new Object[] { patient.getBillingDate(), patient.getBillNumber(), patient.getIcdCode(),
-		                patient.getBillAmount(), date});
+		                patient.getBillAmount(), date });
 
 		if (result != 0)
 			returnValue = true;
@@ -74,7 +76,8 @@ public class MedBillDAOImpl implements IMedBillDAO {
 	public long fetchTotalNoOfBillsByDateRange(String startDate, String endDate) {
 		List<Bill> bills = null;
 
-		String query = "select bill_number from medical_bill where billing_date >= '" + startDate + "' and billing_date <= '" + endDate + "'";
+		String query = "select bill_number from medical_bill where billing_date >= '" + startDate
+		        + "' and billing_date <= '" + endDate + "'";
 
 		try {
 			bills = jdbcTemplate.query(query, new BeanPropertyRowMapper<Bill>(Bill.class));

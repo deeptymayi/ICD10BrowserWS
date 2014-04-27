@@ -30,10 +30,11 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 	@Override
 	public void refresh() {
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, -1);
-		String date = dateFormat.format(cal.getTime());
+		String date1 = dateFormat.format(cal.getTime());
+		cal.add(Calendar.MINUTE, -10);
+		String date2 = dateFormat.format(cal.getTime());
 
 		// Query to insert Patient information to the Patient DB Table
 		String query1 = "truncate new_claims";
@@ -44,8 +45,8 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 		        + "left join medical_record mr on mr.patient_id = p.patient_id left join medical_bill mb "
 		        + "on mb.bill_number = mr.bill_number left join icd_code_to_disease_mapping icd "
 		        + "on mr.icd10_code = icd.icd_code where mr.bill_number is not null and mb.billing_date is not null "
-		        + "and mr.diagnosis is not null and mr.icd10_code is not null and create_date > '" + date
-		        + "'";
+		        + "and mr.diagnosis is not null and mr.icd10_code is not null and create_date >= '" + date2
+		        + "' and create_date < '" + date1 + "'";
 
 		// Create a query using the JDBC template and insert the record.
 		jdbcTemplate.execute(query1);
@@ -54,6 +55,7 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 
 		jdbcTemplate.execute(query2);
 
-		System.out.println("Populated the NEW_CLAIMS table with new claims entered yesterday (" + date + ")");
+		System.out.println("Populated the NEW_CLAIMS table with new claims entered between (" + date2
+		        + ") and )(" + date1 + ")");
 	}
 }
