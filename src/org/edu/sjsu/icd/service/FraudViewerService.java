@@ -155,7 +155,7 @@ public class FraudViewerService {
 	 * This cron job will identify the new claim data that will be analyzed for
 	 * fraud.
 	 */
-	@Scheduled(cron = "0 10 00 * * *")
+	@Scheduled(cron = "0 05,15,25,35,45,55 * * * *")
 	public void prepareNewClaimsForFraudDetection() {
 		System.out.println("Firing the cron for fraud detection.");
 		newClaimsDAO.refresh();
@@ -165,13 +165,13 @@ public class FraudViewerService {
 	 * This cron job will trigger the mapreduce for fraud analysis of the new
 	 * claims data.
 	 */
-	@Scheduled(cron = "0 00 14 * * *")
+	@Scheduled(cron = "0 00,10,20,30,40,50 * * * *")
 	public void runFraudDetectionMRJob() {
 		System.out.println("Firing the cron for MR detection job.");
 		try {
 			Configuration conf = new Configuration();
 			DBConfiguration.configureDB(conf, "com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:3306/icd10_db",
-			        "root", "");
+			        "root", "creator123");
 
 			Job job = new Job(conf);
 			job.setJarByClass(FraudDetectionMRDriver.class);
