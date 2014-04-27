@@ -61,8 +61,7 @@ body {
 		<div class="container">
 			<h1>ICD10 Context Browser !</h1>
 			<p>
-				<a class="btn btn-primary btn-lg" href="signUp.jsp">Sign up
-					&raquo;</a>
+				<a class="btn btn-primary btn-lg" href="signUp.jsp">Sign up &raquo;</a>
 			</p>
 		</div>
 	</div>
@@ -71,49 +70,35 @@ body {
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="col-lg-4">
-				<h2>What is ICD-10 ?</h2>
-				<p>The ICD-10 (the 10th revision of the International
-					Statistical Classification of Diseases and Related Health Problems)
-					is a list of diagnostic codes provided by WHO and used by medical
-					professionals across the world. ICD-10 is widely used to classify
-					diseases and compute the international statistics of mortality rate
-					or cause of death.</p>
-				<p>
+				<h2>What is ICD-10 ?</h2>				
+				<p>The ICD-10 (the 10th revision of the International Statistical Classification of Diseases and Related 
+				<br/>Health Problems) is a list of diagnostic codes <br/>provided by WHO and used by medical
+					professionals across the world.</p>
+				<!-- <p>
 					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
+				</p> -->
+				<img src="<%=request.getContextPath()%>/img/icd-10.jpg" alt="ICD10" style="width:280px;height:200px">
 			</div>
 			<div class="col-lg-4">
 				<h2>Need for Context Browser</h2>
-				<p>The ICD10 Context Browser will correctly classify patient's
-					diagnosis according to the international ICD-10 standards.The
-					ICD-10 code generator will be used to generate and identify the
-					ICD-10 codes after carrying out text analytics on the patient's log
-					written by the doctors. Several diseases with almost similar
-					symptoms have entirely different ICD-10 codes; hence determining
-					the correct codes from patient diagnosis logs is important and
-					needs the use of artificial intelligence, feature detection and
-					clustering. Efficiently determining the ICD-10 codes will help
-					doctors to select the most appropriate code associated with a
-					patient's symptom.</p>
-				<p>
-					<a class="btn btn-default" href="#">View details &raquo;</a>
+				<p>The ICD10 Context Browser helps medical professionals by correctly classifying patient's
+					diagnosis according to the international ICD-10 standards.
 				</p>
+				<!-- <p>
+					<a class="btn btn-default" href="#">View details &raquo;</a>
+				</p> -->
+				<img src="<%=request.getContextPath()%>/img/icd10codes.png" alt="ICD10" style="width:350px;height:250px">
 			</div>
 			<div class="col-lg-4">
 				<h2>Billing Fraud and Impact</h2>
 				<p>The EHR Billing Fraud Detection feature can match the ICD-10
 					code on a patient's medical bill with the ICD-10 code returned by
 					running text analytics on the patient's log and validate them
-					against billing fraud. As per the estimates by American Society of
-					Business and Behavioral Science around 80% of the health care
-					frauds are due to incorrect claims and billing inconsistencies.
-					These features, when integrated with the existing EHR systems will
-					not only facilitate faster and optimal ICD-10 codes suggestions but
-					will also help in minimizing the health care fraud due to
-					inaccurate billing.</p>
-				<p>
+					against billing fraud.</p>
+				<!-- <p>
 					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
+				</p> -->
+				<img src="<%=request.getContextPath()%>/img/billing.png" alt="ICD10" style="width:300px;height:200px; border-radius:25px; margin-top:15px;">
 			</div>
 		</div>
 
