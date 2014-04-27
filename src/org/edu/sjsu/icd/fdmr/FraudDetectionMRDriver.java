@@ -21,8 +21,8 @@ public class FraudDetectionMRDriver {
 	 */
 	public static void main(String[] args) throws Exception {
 		Configuration conf = new Configuration();
-		DBConfiguration.configureDB(conf, "com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ICD10",
-		        "root", "destiny");
+		DBConfiguration.configureDB(conf, "com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:3306/icd10_db",
+		        "root", "creator123");
 
 		Job job = new Job(conf);
 		job.setJarByClass(FraudDetectionMRDriver.class);

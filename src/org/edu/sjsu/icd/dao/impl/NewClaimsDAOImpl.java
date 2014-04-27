@@ -56,6 +56,6 @@ public class NewClaimsDAOImpl implements INewClaimsDAO {
 		jdbcTemplate.execute(query2);
 
 		System.out.println("Populated the NEW_CLAIMS table with new claims entered between (" + date2
-		        + ") and )(" + date1 + ")");
+		        + ") and (" + date1 + ")");
 	}
 }
